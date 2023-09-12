@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Liste des Annonces
+{% endblock %}
+
+{% block body %}
+    <h1> Listes des Annonces</h1>
+    
+    {% for annonce in annonces %}
+    <div class="annonce-item">
+        <h2 style="color:white">Title:{{ annonce.title }}</h2>
+        <span class="annonce-user">Postée par : <strong>{{ annonce.user.username }}</strong></span>
+        <pstyle="color:white"><strong>Description :</strong> {{ annonce.description }}</p>
+        <p><strong>Catégorie :</strong> {{ annonce.category.name}}</p>
+    
+        <!-- Affichage de l'image (suppose que l'image est stockée en tant que chemin vers un fichier) -->
+        {% if annonce.image %}
+            <img src="{{ asset(annonce.image) }}" style="width: 20%;" alt="Image de l'annonce">
+        {% else %}
+            <p>Aucune image disponible pour cette annonce.</p>
+        {% endif %}
+    
+
+   
+<a href="" class="btn btn-danger btn-sm">Lire la suite</a>
+{% if annonce.user == app.user %}
+<a href="" class="btn btn-dark btn-sm">Modifier ma tache</a>
+{% endif %}
+    {% endfor %}
+    </div>
+    <a href="{{ path('Annonce') }}">Retour à la liste des annonces</a>
+
+<style>
+    /* CSS pour styliser les annonces */
+.annonce-item {
+    background-color: black !important;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.annonce-item h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.annonce-item .annonce-user {
+    color: #666;
+}
+
+.annonce-item p {
+    margin: 10px 0;
+}
+
+.annonce-item img {
+    max-width: 100%;
+}
+
+/* CSS pour styliser les groupes d'annonces */
+.annonce-group {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.annonce-group h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+/* Style pour les bordures autour des annonces */
+.annonce-border {
+    border: 2px solid #333;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    background-color: #f7f7f7;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Bouton de retour */
+a.return-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+a.return-button:hover {
+    background-color: #222;
+}
+
+{% endblock %}

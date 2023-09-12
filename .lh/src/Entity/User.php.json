@@ -1,0 +1,146 @@
+{
+    "sourceFile": "src/Entity/User.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 32,
+            "patches": [
+                {
+                    "date": 1694459364202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1694459371440,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,12 @@\n <?php\n \n namespace App\\Entity;\n \n+use Doctrine\\ORM\\Mapping as ORM;\n use App\\Repository\\UserRepository;\n-use Doctrine\\ORM\\Mapping as ORM;\n+use Symfony\\Component\\Security\\Core\\User\\UserInterface;\n+use Symfony\\Component\\Security\\Core\\User\\PasswordAuthenticatedUserInterface;\n \n #[ORM\\Entity(repositoryClass: UserRepository::class)]\n class User implements UserInterface, PasswordAuthenticatedUserInterface\n {\n"
+                },
+                {
+                    "date": 1694459393302,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n use Symfony\\Component\\Security\\Core\\User\\UserInterface;\n use Symfony\\Component\\Security\\Core\\User\\PasswordAuthenticatedUserInterface;\n \n #[ORM\\Entity(repositoryClass: UserRepository::class)]\n-class User implements UserInterface, PasswordAuthenticatedUserInterface\n+class User implements UserInterface,  PasswordAuthenticatedUserInterface\n {\n     #[ORM\\Id]\n     #[ORM\\GeneratedValue]\n     #[ORM\\Column]\n"
+                },
+                {
+                    "date": 1694459453146,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,8 +82,12 @@\n \n         return $this;\n     }\n \n+\n+     /**\n+     * @see UserInterface\n+     */\n     public function getRoles(): ?string\n     {\n         return $this->roles;\n     }\n"
+                },
+                {
+                    "date": 1694459525890,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,16 +86,19 @@\n \n      /**\n      * @see UserInterface\n      */\n-    public function getRoles(): ?string\n+    public function getRoles(): array\n     {\n-        return $this->roles;\n+        $roles = $this->roles;\n+        // guarantee every user at least has ROLE_USER\n+        $roles[] = 'ROLE_USER';\n+\n+        return array_unique($roles);\n     }\n \n-    public function setRoles(string $roles): static\n+    public function setRoles(array $roles): static\n     {\n         $this->roles = $roles;\n \n         return $this;\n-    }\n }\n"
+                },
+                {
+                    "date": 1694459537416,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -101,4 +101,5 @@\n         $this->roles = $roles;\n \n         return $this;\n }\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1694459647209,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,14 @@\n \n         return $this;\n     }\n \n+    public function getUserIdentifier(): string\n+    {\n+        return (string) $this->email;\n+    }\n \n+\n      /**\n      * @see UserInterface\n      */\n     public function getRoles(): array\n"
+                },
+                {
+                    "date": 1694459653385,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,14 +82,10 @@\n \n         return $this;\n     }\n \n-    public function getUserIdentifier(): string\n-    {\n-        return (string) $this->email;\n-    }\n+    \n \n-\n      /**\n      * @see UserInterface\n      */\n     public function getRoles(): array\n"
+                },
+                {
+                    "date": 1694459697647,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,8 +29,10 @@\n \n     #[ORM\\Column(length: 255)]\n     private ?string $roles = null;\n \n+\n+    \n     public function getId(): ?int\n     {\n         return $this->id;\n     }\n"
+                },
+                {
+                    "date": 1694459722224,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,10 +29,19 @@\n \n     #[ORM\\Column(length: 255)]\n     private ?string $roles = null;\n \n+ /**\n+     * A visual identifier that represents this user.\n+     *\n+     * @see UserInterface\n+     */\n+    public function getUserIdentifier(): string\n+    {\n+        return (string) $this->email;\n+    }\n \n-    \n+\n     public function getId(): ?int\n     {\n         return $this->id;\n     }\n@@ -72,8 +81,12 @@\n \n         return $this;\n     }\n \n+     /**\n+     * @see PasswordAuthenticatedUserInterface\n+     */\n+    pub\n     public function getPassword(): ?string\n     {\n         return $this->password;\n     }\n"
+                },
+                {
+                    "date": 1694459727976,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,11 +82,11 @@\n         return $this;\n     }\n \n      /**\n-     * @see PasswordAuthenticatedUserInterface\n+     *  PasswordAuthenticatedUserInterface\n      */\n-    pub\n+    \n     public function getPassword(): ?string\n     {\n         return $this->password;\n     }\n"
+                },
+                {
+                    "date": 1694459738753,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n use Symfony\\Component\\Security\\Core\\User\\UserInterface;\n use Symfony\\Component\\Security\\Core\\User\\PasswordAuthenticatedUserInterface;\n \n #[ORM\\Entity(repositoryClass: UserRepository::class)]\n-class User implements UserInterface,  PasswordAuthenticatedUserInterface\n+class User implements UserInterface,PasswordAuthenticatedUserInterface\n {\n     #[ORM\\Id]\n     #[ORM\\GeneratedValue]\n     #[ORM\\Column]\n@@ -84,9 +84,9 @@\n \n      /**\n      *  PasswordAuthenticatedUserInterface\n      */\n-    \n+\n     public function getPassword(): ?string\n     {\n         return $this->password;\n     }\n"
+                },
+                {
+                    "date": 1694459751834,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n use Symfony\\Component\\Security\\Core\\User\\UserInterface;\n use Symfony\\Component\\Security\\Core\\User\\PasswordAuthenticatedUserInterface;\n \n #[ORM\\Entity(repositoryClass: UserRepository::class)]\n-class User implements UserInterface,PasswordAuthenticatedUserInterface\n+class User implements UserInterface, PasswordAuthenticatedUserInterface\n {\n     #[ORM\\Id]\n     #[ORM\\GeneratedValue]\n     #[ORM\\Column]\n"
+                },
+                {
+                    "date": 1694459766134,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,11 +3,10 @@\n namespace App\\Entity;\n \n use Doctrine\\ORM\\Mapping as ORM;\n use App\\Repository\\UserRepository;\n-use Symfony\\Component\\Security\\Core\\User\\UserInterface;\n-use Symfony\\Component\\Security\\Core\\User\\PasswordAuthenticatedUserInterface;\n \n+\n #[ORM\\Entity(repositoryClass: UserRepository::class)]\n class User implements UserInterface, PasswordAuthenticatedUserInterface\n {\n     #[ORM\\Id]\n"
+                },
+                {
+                    "date": 1694459783815,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,12 @@\n \n use Doctrine\\ORM\\Mapping as ORM;\n use App\\Repository\\UserRepository;\n \n+use Symfony\\Component\\Security\\Core\\User\\PasswordAuthenticatedUserInterface;\n+use Symfony\\Component\\Security\\Core\\User\\UserInterface;\n \n+\n #[ORM\\Entity(repositoryClass: UserRepository::class)]\n class User implements UserInterface, PasswordAuthenticatedUserInterface\n {\n     #[ORM\\Id]\n"
+                },
+                {
+                    "date": 1694459904900,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,15 @@\n     {\n         return (string) $this->email;\n     }\n \n+    public function eraseCredentials(): void\n+    {\n+        // If you store any temporary, sensitive data on the user, clear it here\n+        // $this->plainPassword = null;\n+    }\n \n+\n     public function getId(): ?int\n     {\n         return $this->id;\n     }\n"
+                },
+                {
+                    "date": 1694460020407,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -121,9 +121,9 @@\n     }\n \n     public function setRoles(array $roles): static\n     {\n-        $this->roles = $roles;\n+        $this->roles =$roles;\n \n         return $this;\n }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1694460029231,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -119,8 +119,9 @@\n \n         return array_unique($roles);\n     }\n \n+\n     public function setRoles(array $roles): static\n     {\n         $this->roles =$roles;\n \n"
+                },
+                {
+                    "date": 1694460092174,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -120,11 +120,7 @@\n         return array_unique($roles);\n     }\n \n \n-    public function setRoles(array $roles): static\n-    {\n-        $this->roles =$roles;\n-\n-        return $this;\n+   \n }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1694460160604,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -107,9 +107,9 @@\n     }\n \n     \n \n-     /**\n+      /**\n      * @see UserInterface\n      */\n     public function getRoles(): array\n     {\n@@ -119,8 +119,13 @@\n \n         return array_unique($roles);\n     }\n \n+    public function setRoles(array $roles): static\n+    {\n+        $this->roles = $roles;\n \n\\ No newline at end of file\n+        return $this;\n+    }\n+\n    \n }\n-}\n"
+                },
+                {
+                    "date": 1694460188308,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,10 @@\n     #[ORM\\Column(length: 255)]\n     private ?string $password = null;\n \n     #[ORM\\Column(length: 255)]\n-    private ?string $roles = null;\n+    #[ORM\\Column]\n+    private array $roles = [];\n \n  /**\n      * A visual identifier that represents this user.\n      *\n@@ -127,5 +128,5 @@\n         return $this;\n     }\n \n    \n-}\n\\ No newline at end of file\n+}\n"
+                },
+                {
+                    "date": 1694460200874,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n     #[ORM\\Column(length: 255)]\n     private ?string $password = null;\n \n     #[ORM\\Column(length: 255)]\n-    #[ORM\\Column]\n+ \n     private array $roles = [];\n \n  /**\n      * A visual identifier that represents this user.\n"
+                },
+                {
+                    "date": 1694464535743,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,8 +30,9 @@\n     private ?string $password = null;\n \n     #[ORM\\Column(length: 255)]\n  \n+    #[ORM\\Column]\n     private array $roles = [];\n \n  /**\n      * A visual identifier that represents this user.\n"
+                },
+                {
+                    "date": 1694464636229,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n \n     #[ORM\\Column(length: 255)]\n     private ?string $password = null;\n \n-    #[ORM\\Column(length: 255)]\n+    \n  \n     #[ORM\\Column]\n     private array $roles = [];\n \n"
+                },
+                {
+                    "date": 1694464845648,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,11 +27,9 @@\n     private ?string $email = null;\n \n     #[ORM\\Column(length: 255)]\n     private ?string $password = null;\n-\n     \n- \n     #[ORM\\Column]\n     private array $roles = [];\n \n  /**\n"
+                },
+                {
+                    "date": 1694466527633,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,12 +4,13 @@\n \n use Doctrine\\ORM\\Mapping as ORM;\n use App\\Repository\\UserRepository;\n \n+use Symfony\\Component\\Security\\Core\\User\\UserInterface;\n use Symfony\\Component\\Security\\Core\\User\\PasswordAuthenticatedUserInterface;\n-use Symfony\\Component\\Security\\Core\\User\\UserInterface;\n \n \n+\n #[ORM\\Entity(repositoryClass: UserRepository::class)]\n class User implements UserInterface, PasswordAuthenticatedUserInterface\n {\n     #[ORM\\Id]\n"
+                },
+                {
+                    "date": 1694510893585,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n <?php\n \n namespace App\\Entity;\n \n+use Doctrine\\Common\\Collections\\ArrayCollection;\n+use Doctrine\\Common\\Collections\\Collection;\n use Doctrine\\ORM\\Mapping as ORM;\n use App\\Repository\\UserRepository;\n \n use Symfony\\Component\\Security\\Core\\User\\UserInterface;\n@@ -32,8 +34,16 @@\n     \n     #[ORM\\Column]\n     private array $roles = [];\n \n+    #[ORM\\OneToMany(mappedBy: 'user', targetEntity: Annonce::class)]\n+    private Collection $annonces;\n+\n+    public function __construct()\n+    {\n+        $this->annonces = new ArrayCollection();\n+    }\n+\n  /**\n      * A visual identifier that represents this user.\n      *\n      * @see UserInterface\n@@ -127,6 +137,36 @@\n \n         return $this;\n     }\n \n+    /**\n+     * @return Collection<int, Annonce>\n+     */\n+    public function getAnnonces(): Collection\n+    {\n+        return $this->annonces;\n+    }\n+\n+    public function addAnnonce(Annonce $annonce): static\n+    {\n+        if (!$this->annonces->contains($annonce)) {\n+            $this->annonces->add($annonce);\n+            $annonce->setUser($this);\n+        }\n+\n+        return $this;\n+    }\n+\n+    public function removeAnnonce(Annonce $annonce): static\n+    {\n+        if ($this->annonces->removeElement($annonce)) {\n+        \n+            if ($annonce->getUser() === $this) {\n+                $annonce->setUser(null);\n+            }\n+        }\n+\n+        return $this;\n+    }\n+\n    \n }\n"
+                },
+                {
+                    "date": 1694525212304,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,9 @@\n     #[ORM\\Column(length: 255)]\n     private ?string $username = null;\n \n     #[ORM\\Column(length: 255)]\n+    \n     private ?string $email = null;\n \n     #[ORM\\Column(length: 255)]\n     private ?string $password = null;\n"
+                },
+                {
+                    "date": 1694525236274,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,11 @@\n     #[ORM\\Column(length: 255)]\n     private ?string $username = null;\n \n     #[ORM\\Column(length: 255)]\n-    \n+    #[Assert\\Email(\n+        message: 'The email {{ value }} is not a valid email.',\n+    )]\n     private ?string $email = null;\n \n     #[ORM\\Column(length: 255)]\n     private ?string $password = null;\n"
+                },
+                {
+                    "date": 1694525249780,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n use Doctrine\\Common\\Collections\\ArrayCollection;\n use Doctrine\\Common\\Collections\\Collection;\n use Doctrine\\ORM\\Mapping as ORM;\n use App\\Repository\\UserRepository;\n-\n+use Symfony\\Component\\Validator\\Constraints as Assert;\n use Symfony\\Component\\Security\\Core\\User\\UserInterface;\n use Symfony\\Component\\Security\\Core\\User\\PasswordAuthenticatedUserInterface;\n \n \n"
+                },
+                {
+                    "date": 1694525288186,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,13 @@\n     #[ORM\\GeneratedValue]\n     #[ORM\\Column]\n     private ?int $id = null;\n \n+    #[Assert\\Length(\n+        min: 5,\n+        max: 15,\n+        minMessage: 'Your first name must be at least {{ limit }} characters long')]\n+\n     #[ORM\\Column(length: 255)]\n     private ?string $name = null;\n \n     #[ORM\\Column(length: 255)]\n"
+                },
+                {
+                    "date": 1694525294174,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,14 +19,15 @@\n     #[ORM\\GeneratedValue]\n     #[ORM\\Column]\n     private ?int $id = null;\n \n+    \n+\n+    #[ORM\\Column(length: 255)]\n     #[Assert\\Length(\n         min: 5,\n         max: 15,\n-        minMessage: 'Your first name must be at least {{ limit }} characters long')]\n-\n-    #[ORM\\Column(length: 255)]\n+        minMessage: 'Your  name must be at least {{ limit }} characters long')]\n     private ?string $name = null;\n \n     #[ORM\\Column(length: 255)]\n     private ?string $username = null;\n"
+                },
+                {
+                    "date": 1694525302469,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,8 +29,13 @@\n         minMessage: 'Your  name must be at least {{ limit }} characters long')]\n     private ?string $name = null;\n \n     #[ORM\\Column(length: 255)]\n+\n+    #[Assert\\Length(\n+        min: 5,\n+        max: 15,\n+        minMessage: 'Your first name must be at least {{ limit }} characters long')]\n     private ?string $username = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Assert\\Email(\n"
+                }
+            ],
+            "date": 1694459364202,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Entity;\n\nuse App\\Repository\\UserRepository;\nuse Doctrine\\ORM\\Mapping as ORM;\n\n#[ORM\\Entity(repositoryClass: UserRepository::class)]\nclass User implements UserInterface, PasswordAuthenticatedUserInterface\n{\n    #[ORM\\Id]\n    #[ORM\\GeneratedValue]\n    #[ORM\\Column]\n    private ?int $id = null;\n\n    #[ORM\\Column(length: 255)]\n    private ?string $name = null;\n\n    #[ORM\\Column(length: 255)]\n    private ?string $username = null;\n\n    #[ORM\\Column(length: 255)]\n    private ?string $email = null;\n\n    #[ORM\\Column(length: 255)]\n    private ?string $password = null;\n\n    #[ORM\\Column(length: 255)]\n    private ?string $roles = null;\n\n    public function getId(): ?int\n    {\n        return $this->id;\n    }\n\n    public function getName(): ?string\n    {\n        return $this->name;\n    }\n\n    public function setName(string $name): static\n    {\n        $this->name = $name;\n\n        return $this;\n    }\n\n    public function getUsername(): ?string\n    {\n        return $this->username;\n    }\n\n    public function setUsername(string $username): static\n    {\n        $this->username = $username;\n\n        return $this;\n    }\n\n    public function getEmail(): ?string\n    {\n        return $this->email;\n    }\n\n    public function setEmail(string $email): static\n    {\n        $this->email = $email;\n\n        return $this;\n    }\n\n    public function getPassword(): ?string\n    {\n        return $this->password;\n    }\n\n    public function setPassword(string $password): static\n    {\n        $this->password = $password;\n\n        return $this;\n    }\n\n    public function getRoles(): ?string\n    {\n        return $this->roles;\n    }\n\n    public function setRoles(string $roles): static\n    {\n        $this->roles = $roles;\n\n        return $this;\n    }\n}\n"
+        }
+    ]
+}

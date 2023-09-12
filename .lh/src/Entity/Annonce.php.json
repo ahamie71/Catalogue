@@ -1,0 +1,62 @@
+{
+    "sourceFile": "src/Entity/Annonce.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 11,
+            "patches": [
+                {
+                    "date": 1694503317264,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1694503336894,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n namespace App\\Entity;\n \n use App\\Repository\\AnnonceRepository;\n use Doctrine\\ORM\\Mapping as ORM;\n+use Symfony\\Component\\Validator\\Constraints as Assert;\n \n #[ORM\\Entity(repositoryClass: AnnonceRepository::class)]\n class Annonce\n {\n"
+                },
+                {
+                    "date": 1694506976359,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,19 +60,19 @@\n \n         return $this;\n     }\n \n-    public function getUser(): ?User\n-    {\n-        return $this->user;\n-    }\n+    // public function getUser(): ?User\n+    // {\n+    //     return $this->user;\n+    // }\n \n-    public function setUser(?User $user): static\n-    {\n-        $this->user = $user;\n+    // public function setUser(?User $user): static\n+    // {\n+    //     $this->user = $user;\n \n-        return $this;\n-    }\n+    //     return $this;\n+    // }\n \n     public function getCategory(): ?Category\n     {\n         return $this->category;\n"
+                },
+                {
+                    "date": 1694506981409,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     private ?string $description = null;\n \n     #[ORM\\ManyToOne(inversedBy: 'annonces')]\n     #[ORM\\JoinColumn(nullable: false)]\n-    private ?User $user = null;\n+    // private ?User $user = null;\n \n     #[ORM\\ManyToOne(inversedBy: 'annonces')]\n     #[ORM\\JoinColumn(nullable: false)]\n     private ?Category $category = null;\n"
+                },
+                {
+                    "date": 1694506993856,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,11 +20,11 @@\n     #[ORM\\Column(length: 255)]\n     #[Assert\\Length(min: 40, max: 255, minMessage: 'le contenu comporte 40 caractères minimum')]\n     private ?string $description = null;\n \n-    #[ORM\\ManyToOne(inversedBy: 'annonces')]\n-    #[ORM\\JoinColumn(nullable: false)]\n-    // private ?User $user = null;\n+    // #[ORM\\ManyToOne(inversedBy: 'annonces')]\n+    // #[ORM\\JoinColumn(nullable: false)]\n+    // // private ?User $user = null;\n \n     #[ORM\\ManyToOne(inversedBy: 'annonces')]\n     #[ORM\\JoinColumn(nullable: false)]\n     private ?Category $category = null;\n"
+                },
+                {
+                    "date": 1694507109308,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n     #[ORM\\Column(length: 255)]\n     #[Assert\\Length(min: 40, max: 255, minMessage: 'le contenu comporte 40 caractères minimum')]\n     private ?string $description = null;\n \n-    // #[ORM\\ManyToOne(inversedBy: 'annonces')]\n+    #[ORM\\ManyToOne(inversedBy: 'annonces')]\n     // #[ORM\\JoinColumn(nullable: false)]\n     // // private ?User $user = null;\n \n     #[ORM\\ManyToOne(inversedBy: 'annonces')]\n"
+                },
+                {
+                    "date": 1694507114375,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,10 +21,10 @@\n     #[Assert\\Length(min: 40, max: 255, minMessage: 'le contenu comporte 40 caractères minimum')]\n     private ?string $description = null;\n \n     #[ORM\\ManyToOne(inversedBy: 'annonces')]\n-    // #[ORM\\JoinColumn(nullable: false)]\n-    // // private ?User $user = null;\n+    #[ORM\\JoinColumn(nullable: false)]\n+      private ?User $user = null;\n \n     #[ORM\\ManyToOne(inversedBy: 'annonces')]\n     #[ORM\\JoinColumn(nullable: false)]\n     private ?Category $category = null;\n"
+                },
+                {
+                    "date": 1694507221452,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,19 +60,19 @@\n \n         return $this;\n     }\n \n-    // public function getUser(): ?User\n-    // {\n-    //     return $this->user;\n-    // }\n+    public function getUser(): ?User\n+    {\n+        return $this->user;\n+    }\n \n-    // public function setUser(?User $user): static\n-    // {\n-    //     $this->user = $user;\n+    public function setUser(?User $user): static\n+    {\n+        $this->user = $user;\n \n-    //     return $this;\n-    // }\n+        return $this;\n+    }\n \n     public function getCategory(): ?Category\n     {\n         return $this->category;\n"
+                },
+                {
+                    "date": 1694525710295,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,9 @@\n     #[ORM\\Column]\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n+    \n     private ?string $title = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Assert\\Length(min: 40, max: 255, minMessage: 'le contenu comporte 40 caractères minimum')]\n"
+                },
+                {
+                    "date": 1694525717850,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,12 @@\n     #[ORM\\Column]\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n-    \n+    #[Assert\\Length(\n+        min: 5,\n+        max: 15,\n+        minMessage: 'Your fir must be at least {{ limit }} characters long')]\n     private ?string $title = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Assert\\Length(min: 40, max: 255, minMessage: 'le contenu comporte 40 caractères minimum')]\n"
+                },
+                {
+                    "date": 1694525723693,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     #[ORM\\Column(length: 255)]\n     #[Assert\\Length(\n         min: 5,\n         max: 15,\n-        minMessage: 'Your fir must be at least {{ limit }} characters long')]\n+        minMessage: 'Your title must be at least {{ limit }} characters long')]\n     private ?string $title = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Assert\\Length(min: 40, max: 255, minMessage: 'le contenu comporte 40 caractères minimum')]\n"
+                },
+                {
+                    "date": 1694525947272,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,8 +33,9 @@\n     #[ORM\\JoinColumn(nullable: false)]\n     private ?Category $category = null;\n \n     #[ORM\\Column(length: 255)]\n+    #[Assert\\Url]\n     private ?string $image = null;\n \n     public function getId(): ?int\n     {\n"
+                }
+            ],
+            "date": 1694503317264,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Entity;\n\nuse App\\Repository\\AnnonceRepository;\nuse Doctrine\\ORM\\Mapping as ORM;\n\n#[ORM\\Entity(repositoryClass: AnnonceRepository::class)]\nclass Annonce\n{\n    #[ORM\\Id]\n    #[ORM\\GeneratedValue]\n    #[ORM\\Column]\n    private ?int $id = null;\n\n    #[ORM\\Column(length: 255)]\n    private ?string $title = null;\n\n    #[ORM\\Column(length: 255)]\n    #[Assert\\Length(min: 40, max: 255, minMessage: 'le contenu comporte 40 caractères minimum')]\n    private ?string $description = null;\n\n    #[ORM\\ManyToOne(inversedBy: 'annonces')]\n    #[ORM\\JoinColumn(nullable: false)]\n    private ?User $user = null;\n\n    #[ORM\\ManyToOne(inversedBy: 'annonces')]\n    #[ORM\\JoinColumn(nullable: false)]\n    private ?Category $category = null;\n\n    #[ORM\\Column(length: 255)]\n    private ?string $image = null;\n\n    public function getId(): ?int\n    {\n        return $this->id;\n    }\n\n    public function getTitle(): ?string\n    {\n        return $this->title;\n    }\n\n    public function setTitle(string $title): static\n    {\n        $this->title = $title;\n\n        return $this;\n    }\n\n    public function getDescription(): ?string\n    {\n        return $this->description;\n    }\n\n    public function setDescription(string $description): static\n    {\n        $this->description = $description;\n\n        return $this;\n    }\n\n    public function getUser(): ?User\n    {\n        return $this->user;\n    }\n\n    public function setUser(?User $user): static\n    {\n        $this->user = $user;\n\n        return $this;\n    }\n\n    public function getCategory(): ?Category\n    {\n        return $this->category;\n    }\n\n    public function setCategory(?Category $category): static\n    {\n        $this->category = $category;\n\n        return $this;\n    }\n\n    public function getImage(): ?string\n    {\n        return $this->image;\n    }\n\n    public function setImage(string $image): static\n    {\n        $this->image = $image;\n\n        return $this;\n    }\n}\n"
+        }
+    ]
+}

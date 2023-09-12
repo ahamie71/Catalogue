@@ -1,0 +1,178 @@
+{
+    "sourceFile": "templates/Annonce/create.html.twig",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 40,
+            "patches": [
+                {
+                    "date": 1694504991656,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1694504998071,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n {% extends 'base.html.twig'%}\n \n {% block body %}\n \n-   <h1> Ajouter une tâche</h1>\n+   <h1> Ajouter une annonce</h1>\n \n     {{form_start(formTask) }}\n \n     {{form_row(formTask.title, {'attr':{'placeholder':\"Titre de la tâche\"}})}}\n"
+                },
+                {
+                    "date": 1694505199104,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n    <h1> Ajouter une annonce</h1>\n \n     {{form_start(formTask) }}\n \n-    {{form_row(formTask.title, {'attr':{'placeholder':\"Titre de la tâche\"}})}}\n+    {{form_row(formAn.title, {'attr':{'placeholder':\"Titre de la tâche\"}})}}\n \n      {{form_row(formTask.category, {'attr':{'placeholder':\"Categorie de la tâche\"}})}}\n \n      {{form_row(formTask.description, {'attr':{'placeholder':\"Description  de la tâche\"}})}}\n"
+                },
+                {
+                    "date": 1694505206679,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,11 +3,11 @@\n {% block body %}\n \n    <h1> Ajouter une annonce</h1>\n \n-    {{form_start(formTask) }}\n+    {{form_start(formAnnonce) }}\n \n-    {{form_row(formAn.title, {'attr':{'placeholder':\"Titre de la tâche\"}})}}\n+    {{form_row(formAnnonce.title, {'attr':{'placeholder':\"Titre de la tâche\"}})}}\n \n      {{form_row(formTask.category, {'attr':{'placeholder':\"Categorie de la tâche\"}})}}\n \n      {{form_row(formTask.description, {'attr':{'placeholder':\"Description  de la tâche\"}})}}\n"
+                },
+                {
+                    "date": 1694505214012,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n     {{form_start(formAnnonce) }}\n \n     {{form_row(formAnnonce.title, {'attr':{'placeholder':\"Titre de la tâche\"}})}}\n \n-     {{form_row(formTask.category, {'attr':{'placeholder':\"Categorie de la tâche\"}})}}\n+     {{form_row(formAnn.category, {'attr':{'placeholder':\"Categorie de la tâche\"}})}}\n \n      {{form_row(formTask.description, {'attr':{'placeholder':\"Description  de la tâche\"}})}}\n \n      \n"
+                },
+                {
+                    "date": 1694505219559,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,11 +7,11 @@\n     {{form_start(formAnnonce) }}\n \n     {{form_row(formAnnonce.title, {'attr':{'placeholder':\"Titre de la tâche\"}})}}\n \n-     {{form_row(formAnn.category, {'attr':{'placeholder':\"Categorie de la tâche\"}})}}\n+     {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de la tâche\"}})}}\n \n-     {{form_row(formTask.description, {'attr':{'placeholder':\"Description  de la tâche\"}})}}\n+     {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de la tâche\"}})}}\n \n      \n      \n      <button type=\"submit\" class=\"btn btn-success\">\n"
+                },
+                {
+                    "date": 1694505238567,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   Ajouter la tâche\n   {% endif %}\n </button>\n \n-{{form_end(formTask)}}\n+{{form_end(formAnnonc)}}\n \n \n \n \n"
+                },
+                {
+                    "date": 1694505258953,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,19 +11,19 @@\n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de la tâche\"}})}}\n \n      {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de la tâche\"}})}}\n \n+       \n      \n-     \n      <button type=\"submit\" class=\"btn btn-success\">\n   {% if editMode %}\n   Enregistrer les modifications\n   {% else %}\n   Ajouter la tâche\n   {% endif %}\n </button>\n \n-{{form_end(formAnnonc)}}\n+{{form_end(formAnnonce)}}\n \n \n \n \n"
+                },
+                {
+                    "date": 1694506116346,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,32 +1,65 @@\n-{% extends 'base.html.twig'%}\n+{% extends 'base.html.twig' %}\n \n {% block body %}\n \n-   <h1> Ajouter une annonce</h1>\n+   <div class=\"container\">\n+       <h1>Ajouter une annonce</h1>\n \n-    {{form_start(formAnnonce) }}\n+       {{ form_start(formAnnonce, {'attr': {'class': 'my-form'}}) }}\n \n-    {{form_row(formAnnonce.title, {'attr':{'placeholder':\"Titre de la tâche\"}})}}\n+       <div class=\"form-group\">\n+           {{ form_row(formAnnonce.title, {'attr': {'class': 'form-control', 'placeholder': \"Titre de l'annonce\"}}) }}\n+       </div>\n \n-     {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de la tâche\"}})}}\n+       <div class=\"form-group\">\n+           {{ form_row(formAnnonce.category, {'attr': {'class': 'form-control', 'placeholder': \"Catégorie de l'annonce\"}}) }}\n+       </div>\n \n-     {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de la tâche\"}})}}\n+       <div class=\"form-group\">\n+           {{ form_row(formAnnonce.description, {'attr': {'class': 'form-control', 'placeholder': \"Description de l'annonce\"}}) }}\n+       </div>\n \n-       \n-     \n-     <button type=\"submit\" class=\"btn btn-success\">\n-  {% if editMode %}\n-  Enregistrer les modifications\n\\ No newline at end of file\n-  {% else %}\n-  Ajouter la tâche\n-  {% endif %}\n-</button>\n+       <button type=\"submit\" class=\"btn btn-success\">\n+           {% if editMode %}\n+               Enregistrer les modifications\n+           {% else %}\n+               Ajouter l'annonce\n+           {% endif %}\n+       </button>\n \n-{{form_end(formAnnonce)}}\n+       {{ form_end(formAnnonce) }}\n+   </div>\n \n+   <style>\n+       /* Styles spécifiques au formulaire */\n+       .my-form {\n+           max-width: 400px;\n+           margin: 0 auto;\n+           padding: 20px;\n+           background-color: #f7f7f7;\n+           border: 1px solid #ddd;\n+           border-radius: 5px;\n+       }\n \n+       /* Styles spécifiques aux champs de formulaire */\n+       .form-control {\n+           width: 100%;\n+           padding: 10px;\n+           margin-bottom: 10px;\n+           border: 1px solid #ccc;\n+           border-radius: 3px;\n+       }\n \n+       /* Styles spécifiques au bouton */\n+       .btn-success {\n+           background-color: #28a745;\n+           color: #fff;\n+           border: none;\n+       }\n \n+       .btn-success:hover {\n+           background-color: #218838;\n+       }\n+   </style>\n \n-\n-{% endblock %}\n+{% endblock %}\n"
+                },
+                {
+                    "date": 1694506161310,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,17 +40,8 @@\n            border: 1px solid #ddd;\n            border-radius: 5px;\n        }\n \n-       /* Styles spécifiques aux champs de formulaire */\n-       .form-control {\n-           width: 100%;\n-           padding: 10px;\n-           margin-bottom: 10px;\n-           border: 1px solid #ccc;\n-           border-radius: 3px;\n-       }\n-\n        /* Styles spécifiques au bouton */\n        .btn-success {\n            background-color: #28a745;\n            color: #fff;\n"
+                },
+                {
+                    "date": 1694506172048,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,8 +40,17 @@\n            border: 1px solid #ddd;\n            border-radius: 5px;\n        }\n \n+       /* Styles spécifiques aux champs de formulaire */\n+       .form-control {\n+           width: 100%;\n+           padding: 10px;\n+           margin-bottom: 10px;\n+           border: 1px solid #ccc;\n+           border-radius: 3px;\n+       }\n+\n        /* Styles spécifiques au bouton */\n        .btn-success {\n            background-color: #28a745;\n            color: #fff;\n"
+                },
+                {
+                    "date": 1694506204954,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,9 @@\n        <div class=\"form-group\">\n            {{ form_row(formAnnonce.description, {'attr': {'class': 'form-control', 'placeholder': \"Description de l'annonce\"}}) }}\n        </div>\n \n+       \n        <button type=\"submit\" class=\"btn btn-success\">\n            {% if editMode %}\n                Enregistrer les modifications\n            {% else %}\n"
+                },
+                {
+                    "date": 1694506232371,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,66 +1,32 @@\n-{% extends 'base.html.twig' %}\n+{% extends 'base.html.twig'%}\n \n {% block body %}\n \n-   <div class=\"container\">\n-       <h1>Ajouter une annonce</h1>\n+   <h1> Ajouter une annonce</h1>\n \n-       {{ form_start(formAnnonce, {'attr': {'class': 'my-form'}}) }}\n+    {{form_start(formAnnonce) }}\n \n-       <div class=\"form-group\">\n-           {{ form_row(formAnnonce.title, {'attr': {'class': 'form-control', 'placeholder': \"Titre de l'annonce\"}}) }}\n-       </div>\n+    {{form_row(formAnnonce.title, {'attr':{'placeholder':\"Titre de la tâche\"}})}}\n \n-       <div class=\"form-group\">\n-           {{ form_row(formAnnonce.category, {'attr': {'class': 'form-control', 'placeholder': \"Catégorie de l'annonce\"}}) }}\n-       </div>\n+     {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de la tâche\"}})}}\n \n-       <div class=\"form-group\">\n-           {{ form_row(formAnnonce.description, {'attr': {'class': 'form-control', 'placeholder': \"Description de l'annonce\"}}) }}\n-       </div>\n+     {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de la tâche\"}})}}\n \n        \n-       <button type=\"submit\" class=\"btn btn-success\">\n-           {% if editMode %}\n-               Enregistrer les modifications\n-           {% else %}\n-               Ajouter l'annonce\n-           {% endif %}\n-       </button>\n+     \n+     <button type=\"submit\" class=\"btn btn-success\">\n+  {% if editMode %}\n+  Enregistrer les modifications\n+  {% else %}\n+  Ajouter la tâche\n+  {% endif %}\n+</button>\n \n-       {{ form_end(formAnnonce) }}\n-   </div>\n+{{form_end(formAnnonce)}}\n \n-   <style>\n-       /* Styles spécifiques au formulaire */\n-       .my-form {\n-           max-width: 400px;\n-           margin: 0 auto;\n-           padding: 20px;\n-           background-color: #f7f7f7;\n-           border: 1px solid #ddd;\n-           border-radius: 5px;\n-       }\n \n-       /* Styles spécifiques aux champs de formulaire */\n-       .form-control {\n-           width: 100%;\n-           padding: 10px;\n-           margin-bottom: 10px;\n-           border: 1px solid #ccc;\n-           border-radius: 3px;\n-       }\n \n-       /* Styles spécifiques au bouton */\n-       .btn-success {\n-           background-color: #28a745;\n-           color: #fff;\n-           border: none;\n-       }\n \n-       .btn-success:hover {\n-           background-color: #218838;\n-       }\n-   </style>\n \n-{% endblock %}\n+\n+{% endblock %}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1694506373940,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de la tâche\"}})}}\n \n      {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de la tâche\"}})}}\n \n+     \n        \n      \n      <button type=\"submit\" class=\"btn btn-success\">\n   {% if editMode %}\n"
+                },
+                {
+                    "date": 1694506398118,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de la tâche\"}})}}\n \n      {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de la tâche\"}})}}\n \n-     \n+     {{form_row(formAnnonce.image, {'attr':{'placeholder':\"Description  de la tâche\"}})}}\n        \n      \n      <button type=\"submit\" class=\"btn btn-success\">\n   {% if editMode %}\n"
+                },
+                {
+                    "date": 1694506407012,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,15 +5,15 @@\n    <h1> Ajouter une annonce</h1>\n \n     {{form_start(formAnnonce) }}\n \n-    {{form_row(formAnnonce.title, {'attr':{'placeholder':\"Titre de la tâche\"}})}}\n+    {{form_row(formAnnonce.title, {'attr':{'placeholder':\"Titre de l\"}})}}\n \n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de la tâche\"}})}}\n \n      {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de la tâche\"}})}}\n \n-     {{form_row(formAnnonce.image, {'attr':{'placeholder':\"Description  de la tâche\"}})}}\n+     {{form_row(formAnnonce.image, {'attr':{'placeholder':\"Url  de la tâche\"}})}}\n        \n      \n      <button type=\"submit\" class=\"btn btn-success\">\n   {% if editMode %}\n"
+                },
+                {
+                    "date": 1694506412057,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n    <h1> Ajouter une annonce</h1>\n \n     {{form_start(formAnnonce) }}\n \n-    {{form_row(formAnnonce.title, {'attr':{'placeholder':\"Titre de l\"}})}}\n+    {{form_row(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n \n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de la tâche\"}})}}\n \n      {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de la tâche\"}})}}\n"
+                },
+                {
+                    "date": 1694506417538,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n     {{form_start(formAnnonce) }}\n \n     {{form_row(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n \n-     {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de la tâche\"}})}}\n+     {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de l'annonce\"}})}}\n \n      {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de la tâche\"}})}}\n \n      {{form_row(formAnnonce.image, {'attr':{'placeholder':\"Url  de la tâche\"}})}}\n"
+                },
+                {
+                    "date": 1694506429256,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,11 +9,11 @@\n     {{form_row(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n \n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de l'annonce\"}})}}\n \n-     {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de la tâche\"}})}}\n+     {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de l'annonce\"}})}}\n \n-     {{form_row(formAnnonce.image, {'attr':{'placeholder':\"Url  de la tâche\"}})}}\n+     {{form_row(formAnnonce.image, {'attr':{'placeholder':\"Url  de l'image\"}})}}\n        \n      \n      <button type=\"submit\" class=\"btn btn-success\">\n   {% if editMode %}\n"
+                },
+                {
+                    "date": 1694506569217,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,5 +29,36 @@\n \n \n \n \n-{% endblock %}\n\\ No newline at end of file\n+{% endblock %}\n+\n+<section class=\"form\">\n+        <div class=\"container\">\n+  <div class=\"row\">\n+                <div class=\"col\"></div>\n+                <div class=\"col-6\">\n+                \n+    {{ form_start(form) }}\n+\n+\n+                     <div class=\"mb-3\">\n+                    {{ form_label(form.depart, 'Depart', {'label_attr': {'class': 'form-label'}}) }}\n+                    {{ form_row(form.depart) }}\n+                    </div>\n+\n+                  \n+\n+\n+                    {{ form_label(form.destination, 'Destination', {'label_attr': {'class': 'form-label'}}) }}\n+                    {{ form_row(form.destination )}}\n+                      \n+\n+                      \n+                    {{ form_label(form.datederetour, 'Datederetour', {'label_attr': {'class': 'form-label'}}) }}\n+                    {{ form_row(form.datederetour )  }}\n+\n+                 \n+\n+         \n+                    {{ form_label(form.tarif, 'Tarif', {'label_attr': {'class': 'form-label'}}) }}\n+                    {{ form_row(form.tarif)}}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1694506598452,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n    <h1> Ajouter une annonce</h1>\n \n     {{form_start(formAnnonce) }}\n \n-    {{form_row(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n+    {{form_L(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n \n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de l'annonce\"}})}}\n \n      {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de l'annonce\"}})}}\n"
+                },
+                {
+                    "date": 1694506612951,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n {% extends 'base.html.twig'%}\n \n {% block body %}\n \n-   <h1> Ajouter une annonce</h1>\n+   \n \n     {{form_start(formAnnonce) }}\n \n-    {{form_L(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n+    {{form_label(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n \n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de l'annonce\"}})}}\n \n      {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de l'annonce\"}})}}\n"
+                },
+                {
+                    "date": 1694506621395,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,18 @@\n {% extends 'base.html.twig'%}\n \n {% block body %}\n \n-   \n+<section class=\"form\">\n+<div class=\"container\">\n+<div class=\"row\">\n+        <div class=\"col\"></div>\n+        <div class=\"col-6\">\n \n     {{form_start(formAnnonce) }}\n \n     {{form_label(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n+    \n \n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de l'annonce\"}})}}\n \n      {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de l'annonce\"}})}}\n"
+                },
+                {
+                    "date": 1694506627210,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,12 +8,13 @@\n         <div class=\"col\"></div>\n         <div class=\"col-6\">\n \n     {{form_start(formAnnonce) }}\n+    \n \n     {{form_label(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n-    \n \n+\n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de l'annonce\"}})}}\n \n      {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de l'annonce\"}})}}\n \n"
+                },
+                {
+                    "date": 1694506635279,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,10 +8,11 @@\n         <div class=\"col\"></div>\n         <div class=\"col-6\">\n \n     {{form_start(formAnnonce) }}\n+\n+\n     \n-\n     {{form_label(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n \n \n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de l'annonce\"}})}}\n"
+                },
+                {
+                    "date": 1694506644514,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,10 +9,12 @@\n         <div class=\"col-6\">\n \n     {{form_start(formAnnonce) }}\n \n+    <div class=\"mb-3\">\n+    {{ form_row(form.depart) }}\n+    </div>\n \n-    \n     {{form_label(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n \n \n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de l'annonce\"}})}}\n"
+                },
+                {
+                    "date": 1694506649705,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,10 @@\n \n     {{form_start(formAnnonce) }}\n \n     <div class=\"mb-3\">\n+    {{form_label(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n+\n     {{ form_row(form.depart) }}\n     </div>\n \n     {{form_label(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n"
+                },
+                {
+                    "date": 1694506657491,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,13 +11,12 @@\n     {{form_start(formAnnonce) }}\n \n     <div class=\"mb-3\">\n     {{form_label(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n-\n-    {{ form_row(form.depart) }}\n+    {{ form_row(form.d) }}\n     </div>\n \n-    {{form_label(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n+   \n \n \n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de l'annonce\"}})}}\n \n"
+                },
+                {
+                    "date": 1694506664793,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     {{form_start(formAnnonce) }}\n \n     <div class=\"mb-3\">\n     {{form_label(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n-    {{ form_row(form.d) }}\n+    {{ form_row(formAnnonce.) }}\n     </div>\n \n    \n \n"
+                },
+                {
+                    "date": 1694506670202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     {{form_start(formAnnonce) }}\n \n     <div class=\"mb-3\">\n     {{form_label(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n-    {{ form_row(formAnnonce.) }}\n+    {{ form_row(formAnnonce.title) }}\n     </div>\n \n    \n \n"
+                },
+                {
+                    "date": 1694506690705,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     </div>\n \n    \n \n-\n+{# \n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de l'annonce\"}})}}\n \n      {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de l'annonce\"}})}}\n \n@@ -39,9 +39,9 @@\n \n \n \n \n-{% endblock %}\n+{# {% endblock %} #}\n \n <section class=\"form\">\n         <div class=\"container\">\n   <div class=\"row\">\n@@ -70,5 +70,5 @@\n                  \n \n          \n                     {{ form_label(form.tarif, 'Tarif', {'label_attr': {'class': 'form-label'}}) }}\n-                    {{ form_row(form.tarif)}}\n\\ No newline at end of file\n+                    {{ form_row(form.tarif)}} #}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1694506698335,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     </div>\n \n    \n \n-{# \n+\n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de l'annonce\"}})}}\n \n      {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de l'annonce\"}})}}\n \n@@ -39,10 +39,9 @@\n \n \n \n \n-{# {% endblock %} #}\n-\n+{# {% endblock %}\n <section class=\"form\">\n         <div class=\"container\">\n   <div class=\"row\">\n                 <div class=\"col\"></div>\n"
+                },
+                {
+                    "date": 1694506704508,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n \n \n \n \n-{# {% endblock %}\n+{% endblock %}\n <section class=\"form\">\n         <div class=\"container\">\n   <div class=\"row\">\n                 <div class=\"col\"></div>\n"
+                },
+                {
+                    "date": 1694506727602,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,11 +14,8 @@\n     {{form_label(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n     {{ form_row(formAnnonce.title) }}\n     </div>\n \n-   \n-\n-\n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de l'annonce\"}})}}\n \n      {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de l'annonce\"}})}}\n \n"
+                },
+                {
+                    "date": 1694506734087,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n     <div class=\"mb-3\">\n     {{form_label(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n     {{ form_row(formAnnonce.title) }}\n     </div>\n+    \n \n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de l'annonce\"}})}}\n \n      {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de l'annonce\"}})}}\n"
+                },
+                {
+                    "date": 1694506740518,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,10 +13,10 @@\n     <div class=\"mb-3\">\n     {{form_label(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n     {{ form_row(formAnnonce.title) }}\n     </div>\n-    \n \n+\n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de l'annonce\"}})}}\n \n      {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de l'annonce\"}})}}\n \n@@ -37,35 +37,4 @@\n \n \n \n \n-{% endblock %}\n-<section class=\"form\">\n-        <div class=\"container\">\n-  <div class=\"row\">\n-                <div class=\"col\"></div>\n-                <div class=\"col-6\">\n-                \n-    {{ form_start(form) }}\n-\n-\n-                     <div class=\"mb-3\">\n-                    {{ form_label(form.depart, 'Depart', {'label_attr': {'class': 'form-label'}}) }}\n-                    {{ form_row(form.depart) }}\n-                    </div>\n-\n-                  \n-\n-\n-                    {{ form_label(form.destination, 'Destination', {'label_attr': {'class': 'form-label'}}) }}\n-                    {{ form_row(form.destination )}}\n-                      \n-\n-                      \n-                    {{ form_label(form.datederetour, 'Datederetour', {'label_attr': {'class': 'form-label'}}) }}\n-                    {{ form_row(form.datederetour )  }}\n-\n-                 \n-\n-         \n-                    {{ form_label(form.tarif, 'Tarif', {'label_attr': {'class': 'form-label'}}) }}\n-                    {{ form_row(form.tarif)}} #}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1694506752352,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,10 +13,10 @@\n     <div class=\"mb-3\">\n     {{form_label(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n     {{ form_row(formAnnonce.title) }}\n     </div>\n+    \n \n-\n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de l'annonce\"}})}}\n \n      {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de l'annonce\"}})}}\n \n@@ -37,4 +37,6 @@\n \n \n \n \n+{% endblock %}\n+<section class=\"form\">\n"
+                },
+                {
+                    "date": 1694506766425,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,5 +38,5 @@\n \n \n \n {% endblock %}\n-<section class=\"form\">\n+\n"
+                },
+                {
+                    "date": 1694506833940,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,15 +8,13 @@\n         <div class=\"col\"></div>\n         <div class=\"col-6\">\n \n     {{form_start(formAnnonce) }}\n+    \n \n-    <div class=\"mb-3\">\n     {{form_label(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n-    {{ form_row(formAnnonce.title) }}\n-    </div>\n-    \n \n+\n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de l'annonce\"}})}}\n \n      {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de l'annonce\"}})}}\n \n@@ -39,4 +37,34 @@\n \n \n {% endblock %}\n \n+<section class=\"form\">\n+        <div class=\"container\">\n+  <div class=\"row\">\n+                <div class=\"col\"></div>\n+                <div class=\"col-6\">\n+                \n+    {{ form_start(form) }}\n+\n+\n+                     <div class=\"mb-3\">\n+                    {{ form_label(form.depart, 'Depart', {'label_attr': {'class': 'form-label'}}) }}\n+                    {{ form_row(form.depart) }}\n+                    </div>\n+\n+                  \n+\n+\n+                    {{ form_label(form.destination, 'Destination', {'label_attr': {'class': 'form-label'}}) }}\n+                    {{ form_row(form.destination )}}\n+                      \n+\n+                      \n+                    {{ form_label(form.datederetour, 'Datederetour', {'label_attr': {'class': 'form-label'}}) }}\n+                    {{ form_row(form.datederetour )  }}\n+\n+                 \n+\n+         \n+                    {{ form_label(form.tarif, 'Tarif', {'label_attr': {'class': 'form-label'}}) }}\n+                    {{ form_row(form.tarif)}}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1694506839045,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,20 +1,14 @@\n {% extends 'base.html.twig'%}\n \n {% block body %}\n \n-<section class=\"form\">\n-<div class=\"container\">\n-<div class=\"row\">\n-        <div class=\"col\"></div>\n-        <div class=\"col-6\">\n+   \n \n     {{form_start(formAnnonce) }}\n-    \n \n     {{form_label(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n \n-\n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de l'annonce\"}})}}\n \n      {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de l'annonce\"}})}}\n \n"
+                },
+                {
+                    "date": 1694506851335,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n {% extends 'base.html.twig'%}\n \n {% block body %}\n \n-   \n+   <h1> Ajouter une annonce</h1>\n \n     {{form_start(formAnnonce) }}\n \n-    {{form_label(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n+    {{form_row(formAnnonce.title, {'attr':{'placeholder':\"Titre de l'annonce\"}})}}\n \n      {{form_row(formAnnonce.category, {'attr':{'placeholder':\"Categorie de l'annonce\"}})}}\n \n      {{form_row(formAnnonce.description, {'attr':{'placeholder':\"Description  de l'annonce\"}})}}\n@@ -31,34 +31,4 @@\n \n \n {% endblock %}\n \n-<section class=\"form\">\n-        <div class=\"container\">\n-  <div class=\"row\">\n-                <div class=\"col\"></div>\n-                <div class=\"col-6\">\n-                \n-    {{ form_start(form) }}\n-\n-\n-                     <div class=\"mb-3\">\n-                    {{ form_label(form.depart, 'Depart', {'label_attr': {'class': 'form-label'}}) }}\n-                    {{ form_row(form.depart) }}\n-                    </div>\n-\n-                  \n-\n-\n-                    {{ form_label(form.destination, 'Destination', {'label_attr': {'class': 'form-label'}}) }}\n-                    {{ form_row(form.destination )}}\n-                      \n-\n-                      \n-                    {{ form_label(form.datederetour, 'Datederetour', {'label_attr': {'class': 'form-label'}}) }}\n-                    {{ form_row(form.datederetour )  }}\n-\n-                 \n-\n-         \n-                    {{ form_label(form.tarif, 'Tarif', {'label_attr': {'class': 'form-label'}}) }}\n-                    {{ form_row(form.tarif)}}\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1694504991656,
+            "name": "Commit-0",
+            "content": "{% extends 'base.html.twig'%}\n\n{% block body %}\n\n   <h1> Ajouter une tâche</h1>\n\n    {{form_start(formTask) }}\n\n    {{form_row(formTask.title, {'attr':{'placeholder':\"Titre de la tâche\"}})}}\n\n     {{form_row(formTask.category, {'attr':{'placeholder':\"Categorie de la tâche\"}})}}\n\n     {{form_row(formTask.description, {'attr':{'placeholder':\"Description  de la tâche\"}})}}\n\n     \n     \n     <button type=\"submit\" class=\"btn btn-success\">\n  {% if editMode %}\n  Enregistrer les modifications\n  {% else %}\n  Ajouter la tâche\n  {% endif %}\n</button>\n\n{{form_end(formTask)}}\n\n\n\n\n\n\n{% endblock %}"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/Form/RegisterType.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1694458096613,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1694458105359,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,20 +5,62 @@\n use App\\Entity\\User;\n use Symfony\\Component\\Form\\AbstractType;\n use Symfony\\Component\\Form\\FormBuilderInterface;\n use Symfony\\Component\\OptionsResolver\\OptionsResolver;\n+use Symfony\\Component\\Form\\Extension\\Core\\Type\\TextType;\n+use Symfony\\Component\\Form\\Extension\\Core\\Type\\EmailType;\n+use Symfony\\Component\\Form\\Extension\\Core\\Type\\SubmitType;\n+use Symfony\\Component\\Form\\Extension\\Core\\Type\\PasswordType;\n+use Symfony\\Component\\Form\\Extension\\Core\\Type\\RepeatedType;\n+use Symfony\\Component\\Validator\\Constraints\\Regex;\n \n class RegisterType extends AbstractType\n {\n     public function buildForm(FormBuilderInterface $builder, array $options): void\n     {\n         $builder\n-            ->add('name')\n-            ->add('username')\n-            ->add('email')\n-            ->add('password')\n-          \n-        ;\n+        ->add('name',TextType::class,[\n+            'label' => false\n+        ])\n+        ->add('prenom',TextType::class,[\n+            'label' => false,\n+        ])\n+        ->add('email',EmailType::class,[\n+              'label' => false,\n+            ])\n+       \n+\n+            ->add('password', RepeatedType::class, [\n+                'type' => PasswordType::class,\n+                'invalid_message' => 'The password and the confirmation must be identical.',\n+                'label' => 'Votre mot de passe',\n+                'required' => true,\n+                'first_options' => [\n+                    'label' => 'Password',\n+                    'attr' => [\n+                        'class'=>'form-control',\n+                    ],\n+                    // 'constraints' => [\n+                    //     new Regex('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/',\n+                    //      'il faut un mot de passe de 8 caractères avec 1 majuscule , 1 minuscule,1 chiffre et 1 caractère special'),\n+                         \n+                    // ],\n+                ],\n+                'second_options' => [\n+                    'label' => 'Confirm your password',\n+                    'attr' => [\n+                        'class'=>'form-control',\n+                    ],\n+                ],\n+            ])\n+\n+            \n+            ->add('submit', SubmitType::class, [\n+                'label' => \"S'inscrire\",\n+                'attr' => [\n+                    'class' => 'btn w-100 text-White mt-2 btn-lg bg-success',\n+                ] ,\n+            ]) ;\n     }\n \n     public function configureOptions(OptionsResolver $resolver): void\n     {\n"
+                },
+                {
+                    "date": 1694458118236,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,19 +10,19 @@\n use Symfony\\Component\\Form\\Extension\\Core\\Type\\EmailType;\n use Symfony\\Component\\Form\\Extension\\Core\\Type\\SubmitType;\n use Symfony\\Component\\Form\\Extension\\Core\\Type\\PasswordType;\n use Symfony\\Component\\Form\\Extension\\Core\\Type\\RepeatedType;\n-use Symfony\\Component\\Validator\\Constraints\\Regex;\n \n+\n class RegisterType extends AbstractType\n {\n     public function buildForm(FormBuilderInterface $builder, array $options): void\n     {\n         $builder\n         ->add('name',TextType::class,[\n             'label' => false\n         ])\n-        ->add('prenom',TextType::class,[\n+        ->add('username',TextType::class,[\n             'label' => false,\n         ])\n         ->add('email',EmailType::class,[\n               'label' => false,\n"
+                }
+            ],
+            "date": 1694458096613,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Form;\n\nuse App\\Entity\\User;\nuse Symfony\\Component\\Form\\AbstractType;\nuse Symfony\\Component\\Form\\FormBuilderInterface;\nuse Symfony\\Component\\OptionsResolver\\OptionsResolver;\n\nclass RegisterType extends AbstractType\n{\n    public function buildForm(FormBuilderInterface $builder, array $options): void\n    {\n        $builder\n            ->add('name')\n            ->add('username')\n            ->add('email')\n            ->add('password')\n          \n        ;\n    }\n\n    public function configureOptions(OptionsResolver $resolver): void\n    {\n        $resolver->setDefaults([\n            'data_class' => User::class,\n        ]);\n    }\n}\n"
+        }
+    ]
+}

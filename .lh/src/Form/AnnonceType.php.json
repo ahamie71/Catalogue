@@ -1,0 +1,90 @@
+{
+    "sourceFile": "src/Form/AnnonceType.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 18,
+            "patches": [
+                {
+                    "date": 1694503823101,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1694503834803,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n             'required' => 'required',\n             'label'=>'Description'\n         ])\n             ->add('image')\n-            ->add('user')\n+           \n             ->add('category')\n         ;\n     }\n \n"
+                },
+                {
+                    "date": 1694503855360,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,8 @@\n         ->add('description',TextareaType::class,[\n             'required' => 'required',\n             'label'=>'Description'\n         ])\n-            ->add('image')\n            \n             ->add('category')\n         ;\n     }\n"
+                },
+                {
+                    "date": 1694503860684,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n             'required' => 'required',\n             'label'=>'Description'\n         ])\n            \n-            ->add('category')\n+            \n         ;\n     }\n \n     public function configureOptions(OptionsResolver $resolver): void\n"
+                },
+                {
+                    "date": 1694503881614,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,13 @@\n         ->add('description',TextareaType::class,[\n             'required' => 'required',\n             'label'=>'Description'\n         ])\n-           \n+        ->add('category',EntityType::class,[\n+            'class' => Category::class,\n+            'choice_label'=> 'nom',\n+            'label'=>'Category'\n+        ])\n             \n         ;\n     }\n \n"
+                },
+                {
+                    "date": 1694503888440,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,10 @@\n         ->add('description',TextareaType::class,[\n             'required' => 'required',\n             'label'=>'Description'\n         ])\n+\n+        ->add\n         ->add('category',EntityType::class,[\n             'class' => Category::class,\n             'choice_label'=> 'nom',\n             'label'=>'Category'\n"
+                },
+                {
+                    "date": 1694503894803,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n             'required' => 'required',\n             'label'=>'Description'\n         ])\n \n-        ->add\n+        ->add('image',ImageType::class)\n         ->add('category',EntityType::class,[\n             'class' => Category::class,\n             'choice_label'=> 'nom',\n             'label'=>'Category'\n"
+                },
+                {
+                    "date": 1694503907922,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n             'required' => 'required',\n             'label'=>'Description'\n         ])\n \n-        ->add('image',ImageType::class)\n+        ->add('image',ImageType::class,\n         ->add('category',EntityType::class,[\n             'class' => Category::class,\n             'choice_label'=> 'nom',\n             'label'=>'Category'\n"
+                },
+                {
+                    "date": 1694503919144,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,12 @@\n             'required' => 'required',\n             'label'=>'Description'\n         ])\n \n-        ->add('image',ImageType::class,\n+        ->add('image',ImageType::class,[\n+            'required' => 'required',\n+            'label'=>'Description'\n+        ]\n         ->add('category',EntityType::class,[\n             'class' => Category::class,\n             'choice_label'=> 'nom',\n             'label'=>'Category'\n"
+                },
+                {
+                    "date": 1694503961787,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n use App\\Entity\\Annonce;\n use Symfony\\Component\\Form\\AbstractType;\n use Symfony\\Component\\Form\\FormBuilderInterface;\n use Symfony\\Component\\OptionsResolver\\OptionsResolver;\n+use Symfony\\Component\\Form\\Extension\\Core\\Type\\TextType;\n \n class AnnonceType extends AbstractType\n {\n     public function buildForm(FormBuilderInterface $builder, array $options): void\n@@ -23,9 +24,10 @@\n \n         ->add('image',ImageType::class,[\n             'required' => 'required',\n             'label'=>'Description'\n-        ]\n+        ])\n+        \n         ->add('category',EntityType::class,[\n             'class' => Category::class,\n             'choice_label'=> 'nom',\n             'label'=>'Category'\n"
+                },
+                {
+                    "date": 1694503982090,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,12 @@\n \n use App\\Entity\\Annonce;\n use Symfony\\Component\\Form\\AbstractType;\n use Symfony\\Component\\Form\\FormBuilderInterface;\n+use Symfony\\Bridge\\Doctrine\\Form\\Type\\EntityType;\n use Symfony\\Component\\OptionsResolver\\OptionsResolver;\n use Symfony\\Component\\Form\\Extension\\Core\\Type\\TextType;\n+use Symfony\\Component\\Form\\Extension\\Core\\Type\\TextareaType;\n \n class AnnonceType extends AbstractType\n {\n     public function buildForm(FormBuilderInterface $builder, array $options): void\n"
+                },
+                {
+                    "date": 1694504204627,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n             'required' => 'required',\n             'label'=>'Description'\n         ])\n \n-        ->add('image',ImageType::class,[\n+        ->add('image',text::class,[\n             'required' => 'required',\n             'label'=>'Description'\n         ])\n         \n"
+                },
+                {
+                    "date": 1694504212110,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,11 +23,11 @@\n             'required' => 'required',\n             'label'=>'Description'\n         ])\n \n-        ->add('image',text::class,[\n+        ->add('image',TextType::class,[\n             'required' => 'required',\n-            'label'=>'Description'\n+            'label'=>'image'\n         ])\n         \n         ->add('category',EntityType::class,[\n             'class' => Category::class,\n"
+                },
+                {
+                    "date": 1694504326598,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,13 +23,14 @@\n             'required' => 'required',\n             'label'=>'Description'\n         ])\n \n-        ->add('image',TextType::class,[\n-            'required' => 'required',\n-            'label'=>'image'\n+        ->add('image', TextType::class, [\n+            'required' => true,\n+            'label' => 'Image (URL)', // Vous pouvez ajuster l'étiquette selon vos besoins\n         ])\n         \n+        \n         ->add('category',EntityType::class,[\n             'class' => Category::class,\n             'choice_label'=> 'nom',\n             'label'=>'Category'\n"
+                },
+                {
+                    "date": 1694505474382,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n         \n         \n         ->add('category',EntityType::class,[\n             'class' => Category::class,\n-            'choice_label'=> 'nom',\n+            'choice_label'=> 'name',\n             'label'=>'Category'\n         ])\n             \n         ;\n"
+                },
+                {
+                    "date": 1694505517476,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,13 +29,14 @@\n             'label' => 'Image (URL)', // Vous pouvez ajuster l'étiquette selon vos besoins\n         ])\n         \n         \n-        ->add('category',EntityType::class,[\n+        ->add('category', EntityType::class, [\n             'class' => Category::class,\n-            'choice_label'=> 'name',\n-            'label'=>'Category'\n+            'choice_label' => 'name',\n+            'label' => 'Category'\n         ])\n+        \n             \n         ;\n     }\n \n"
+                },
+                {
+                    "date": 1694505528416,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n \n namespace App\\Form;\n \n use App\\Entity\\Annonce;\n+\n use Symfony\\Component\\Form\\AbstractType;\n use Symfony\\Component\\Form\\FormBuilderInterface;\n use Symfony\\Bridge\\Doctrine\\Form\\Type\\EntityType;\n use Symfony\\Component\\OptionsResolver\\OptionsResolver;\n"
+                },
+                {
+                    "date": 1694505538354,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \n namespace App\\Form;\n \n use App\\Entity\\Annonce;\n-\n+use App\\Entity\\Cat;\n use Symfony\\Component\\Form\\AbstractType;\n use Symfony\\Component\\Form\\FormBuilderInterface;\n use Symfony\\Bridge\\Doctrine\\Form\\Type\\EntityType;\n use Symfony\\Component\\OptionsResolver\\OptionsResolver;\n"
+                },
+                {
+                    "date": 1694505574933,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \n namespace App\\Form;\n \n use App\\Entity\\Annonce;\n-use App\\Entity\\Cat;\n+use App\\Entity\\Category;\n use Symfony\\Component\\Form\\AbstractType;\n use Symfony\\Component\\Form\\FormBuilderInterface;\n use Symfony\\Bridge\\Doctrine\\Form\\Type\\EntityType;\n use Symfony\\Component\\OptionsResolver\\OptionsResolver;\n@@ -36,8 +36,9 @@\n             'choice_label' => 'name',\n             'label' => 'Category'\n         ])\n         \n+        \n             \n         ;\n     }\n \n"
+                }
+            ],
+            "date": 1694503823101,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Form;\n\nuse App\\Entity\\Annonce;\nuse Symfony\\Component\\Form\\AbstractType;\nuse Symfony\\Component\\Form\\FormBuilderInterface;\nuse Symfony\\Component\\OptionsResolver\\OptionsResolver;\n\nclass AnnonceType extends AbstractType\n{\n    public function buildForm(FormBuilderInterface $builder, array $options): void\n    {\n        $builder\n        ->add('title',TextType::class,[\n            'required'=> 'required',\n            'label'=>'Titre',\n        ])\n        ->add('description',TextareaType::class,[\n            'required' => 'required',\n            'label'=>'Description'\n        ])\n            ->add('image')\n            ->add('user')\n            ->add('category')\n        ;\n    }\n\n    public function configureOptions(OptionsResolver $resolver): void\n    {\n        $resolver->setDefaults([\n            'data_class' => Annonce::class,\n        ]);\n    }\n}\n"
+        }
+    ]
+}

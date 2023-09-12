@@ -1,0 +1,26 @@
+{
+    "sourceFile": "templates/security/login.html.twig",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1694461550080,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1694464238824,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     {% endif %}\n \n     <h1 class=\"h3 mb-3 font-weight-normal\">Please sign in</h1>\n     <label for=\"inputEmail\">Email</label>\n-    <input type=\"email\" value=\"{{ last_username }}\" name=\"email\" id=\"inputEmail\" class=\"form-control\" autocomplete=\"email\" required autofocus>\n+    <input type=\"email\" value=\"{{ username }}\" name=\"email\" id=\"inputEmail\" class=\"form-control\" autocomplete=\"email\" required autofocus>\n     <label for=\"inputPassword\">Password</label>\n     <input type=\"password\" name=\"password\" id=\"inputPassword\" class=\"form-control\" autocomplete=\"current-password\" required>\n \n     <input type=\"hidden\" name=\"_csrf_token\"\n"
+                },
+                {
+                    "date": 1694464265744,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     {% endif %}\n \n     <h1 class=\"h3 mb-3 font-weight-normal\">Please sign in</h1>\n     <label for=\"inputEmail\">Email</label>\n-    <input type=\"email\" value=\"{{ username }}\" name=\"email\" id=\"inputEmail\" class=\"form-control\" autocomplete=\"email\" required autofocus>\n+    <input type=\"email\" value=\"{{ last_username }}\" name=\"email\" id=\"inputEmail\" class=\"form-control\" autocomplete=\"email\" required autofocus>\n     <label for=\"inputPassword\">Password</label>\n     <input type=\"password\" name=\"password\" id=\"inputPassword\" class=\"form-control\" autocomplete=\"current-password\" required>\n \n     <input type=\"hidden\" name=\"_csrf_token\"\n"
+                }
+            ],
+            "date": 1694461550080,
+            "name": "Commit-0",
+            "content": "{% extends 'base.html.twig' %}\n\n{% block title %}Log in!{% endblock %}\n\n{% block body %}\n<form method=\"post\">\n    {% if error %}\n        <div class=\"alert alert-danger\">{{ error.messageKey|trans(error.messageData, 'security') }}</div>\n    {% endif %}\n\n    {% if app.user %}\n        <div class=\"mb-3\">\n            You are logged in as {{ app.user.userIdentifier }}, <a href=\"{{ path('app_logout') }}\">Logout</a>\n        </div>\n    {% endif %}\n\n    <h1 class=\"h3 mb-3 font-weight-normal\">Please sign in</h1>\n    <label for=\"inputEmail\">Email</label>\n    <input type=\"email\" value=\"{{ last_username }}\" name=\"email\" id=\"inputEmail\" class=\"form-control\" autocomplete=\"email\" required autofocus>\n    <label for=\"inputPassword\">Password</label>\n    <input type=\"password\" name=\"password\" id=\"inputPassword\" class=\"form-control\" autocomplete=\"current-password\" required>\n\n    <input type=\"hidden\" name=\"_csrf_token\"\n           value=\"{{ csrf_token('authenticate') }}\"\n    >\n\n    <button class=\"btn btn-lg btn-primary\" type=\"submit\">\n       Se connecter\n    </button>\n</form>\n{% endblock %}\n"
+        }
+    ]
+}

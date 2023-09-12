@@ -1,0 +1,58 @@
+{
+    "sourceFile": "src/Controller/SecurityController.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 10,
+            "patches": [
+                {
+                    "date": 1694461384479,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1694461391924,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,10 @@\n     #[Route(path: '/login', name: 'app_login')]\n     public function login(AuthenticationUtils $authenticationUtils): Response\n     {\n         if ($this->getUser()) {\n-        //     return $this->redirectToRoute('target_path');\n-        // }\n+             return $this->redirectToRoute('Annoc');\n+     }\n \n         // get the login error if there is one\n         $error = $authenticationUtils->getLastAuthenticationError();\n         // last username entered by the user\n"
+                },
+                {
+                    "date": 1694464438008,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,10 @@\n     #[Route(path: '/login', name: 'app_login')]\n     public function login(AuthenticationUtils $authenticationUtils): Response\n     {\n         if ($this->getUser()) {\n-             return $this->redirectToRoute('Annoc');\n+            \n+             return $this->redirectToRoute('Annonce');\n      }\n \n         // get the login error if there is one\n         $error = $authenticationUtils->getLastAuthenticationError();\n"
+                },
+                {
+                    "date": 1694464914805,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,12 +12,16 @@\n     #[Route(path: '/login', name: 'app_login')]\n     public function login(AuthenticationUtils $authenticationUtils): Response\n     {\n         if ($this->getUser()) {\n-            \n+\n              return $this->redirectToRoute('Annonce');\n      }\n+     else {\n \n+        'e'\n+     }\n+\n         // get the login error if there is one\n         $error = $authenticationUtils->getLastAuthenticationError();\n         // last username entered by the user\n         $lastUsername = $authenticationUtils->getLastUsername();\n"
+                },
+                {
+                    "date": 1694464920193,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n              return $this->redirectToRoute('Annonce');\n      }\n      else {\n \n-        'e'\n+        echo' error'\n      }\n \n         // get the login error if there is one\n         $error = $authenticationUtils->getLastAuthenticationError();\n"
+                },
+                {
+                    "date": 1694464925963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n              return $this->redirectToRoute('Annonce');\n      }\n      else {\n \n-        echo' error'\n+        echo 'error';\n      }\n \n         // get the login error if there is one\n         $error = $authenticationUtils->getLastAuthenticationError();\n"
+                },
+                {
+                    "date": 1694464938980,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,13 +15,10 @@\n         if ($this->getUser()) {\n \n              return $this->redirectToRoute('Annonce');\n      }\n-     else {\n+    \n \n-        echo 'error';\n-     }\n-\n         // get the login error if there is one\n         $error = $authenticationUtils->getLastAuthenticationError();\n         // last username entered by the user\n         $lastUsername = $authenticationUtils->getLastUsername();\n"
+                },
+                {
+                    "date": 1694464965127,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n         // get the login error if there is one\n         $error = $authenticationUtils->getLastAuthenticationError();\n         // last username entered by the user\n-        $lastUsername = $authenticationUtils->getLastUsername();\n+        $lastUsername = $authenticationUtils->geUsername();\n \n         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);\n     }\n \n"
+                },
+                {
+                    "date": 1694464970924,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n         // get the login error if there is one\n         $error = $authenticationUtils->getLastAuthenticationError();\n         // last username entered by the user\n-        $lastUsername = $authenticationUtils->geUsername();\n+        $lastUsername = $authenticationUtils->getLastUsername();\n \n         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);\n     }\n \n"
+                },
+                {
+                    "date": 1694465642582,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n use Symfony\\Component\\Security\\Http\\Authentication\\AuthenticationUtils;\n \n class SecurityController extends AbstractController\n {\n-    #[Route(path: '/login', name: 'app_login')]\n+    #[Route(path: '/connexion', name: 'app_login')]\n     public function login(AuthenticationUtils $authenticationUtils): Response\n     {\n         if ($this->getUser()) {\n \n"
+                },
+                {
+                    "date": 1694465800062,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n use Symfony\\Component\\Security\\Http\\Authentication\\AuthenticationUtils;\n \n class SecurityController extends AbstractController\n {\n-    #[Route(path: '/connexion', name: 'app_login')]\n+    #[Route(path: '/login', name: 'app_login')]\n     public function login(AuthenticationUtils $authenticationUtils): Response\n     {\n         if ($this->getUser()) {\n \n"
+                }
+            ],
+            "date": 1694461384479,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Controller;\n\nuse Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\nuse Symfony\\Component\\HttpFoundation\\Response;\nuse Symfony\\Component\\Routing\\Annotation\\Route;\nuse Symfony\\Component\\Security\\Http\\Authentication\\AuthenticationUtils;\n\nclass SecurityController extends AbstractController\n{\n    #[Route(path: '/login', name: 'app_login')]\n    public function login(AuthenticationUtils $authenticationUtils): Response\n    {\n        if ($this->getUser()) {\n        //     return $this->redirectToRoute('target_path');\n        // }\n\n        // get the login error if there is one\n        $error = $authenticationUtils->getLastAuthenticationError();\n        // last username entered by the user\n        $lastUsername = $authenticationUtils->getLastUsername();\n\n        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);\n    }\n\n    #[Route(path: '/logout', name: 'app_logout')]\n    public function logout(): void\n    {\n        throw new \\LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');\n    }\n}\n"
+        }
+    ]
+}

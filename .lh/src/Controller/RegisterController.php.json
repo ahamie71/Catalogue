@@ -1,0 +1,126 @@
+{
+    "sourceFile": "src/Controller/RegisterController.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 27,
+            "patches": [
+                {
+                    "date": 1694457521548,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1694457531231,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n use Symfony\\Component\\Routing\\Annotation\\Route;\n \n class RegisterController extends AbstractController\n {\n-    #[Route('/register', name: 'app_register')]\n+    #[Route('/inscription', name: 'app_register')]\n     public function index(): Response\n     {\n         return $this->render('register/index.html.twig', [\n             \n"
+                },
+                {
+                    "date": 1694457536763,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n use Symfony\\Component\\Routing\\Annotation\\Route;\n \n class RegisterController extends AbstractController\n {\n-    #[Route('/inscription', name: 'app_register')]\n+    #[Route('/inscription', name: 'register')]\n     public function index(): Response\n     {\n         return $this->render('register/index.html.twig', [\n             \n"
+                },
+                {
+                    "date": 1694457553005,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,10 @@\n use Symfony\\Component\\Routing\\Annotation\\Route;\n \n class RegisterController extends AbstractController\n {\n+\n+    \n     #[Route('/inscription', name: 'register')]\n     public function index(): Response\n     {\n         return $this->render('register/index.html.twig', [\n"
+                },
+                {
+                    "date": 1694457565698,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,22 @@\n <?php\n \n namespace App\\Controller;\n \n+use Doctrine\\ORM\\EntityManagerInterface;\n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n \n class RegisterController extends AbstractController\n {\n+    private $entityManager;\n \n-    \n+    public function __construct(EntityManagerInterface $entityManager)\n+    {\n+        $this->entityManager = $entityManager;\n+    }\n+\n     #[Route('/inscription', name: 'register')]\n     public function index(): Response\n     {\n         return $this->render('register/index.html.twig', [\n"
+                },
+                {
+                    "date": 1694457850865,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,11 +15,14 @@\n     {\n         $this->entityManager = $entityManager;\n     }\n \n+\n     #[Route('/inscription', name: 'register')]\n     public function index(): Response\n     {\n+\n+        \n         return $this->render('register/index.html.twig', [\n             \n         ]);\n     }\n"
+                },
+                {
+                    "date": 1694457868170,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,10 +19,13 @@\n \n     #[Route('/inscription', name: 'register')]\n     public function index(): Response\n     {\n+        $user = new User();\n+        $form = $this->createForm(RegisterType::class, $user);\n \n-        \n+        $form->handleRequest($request);\n+\n         return $this->render('register/index.html.twig', [\n             \n         ]);\n     }\n"
+                },
+                {
+                    "date": 1694457877386,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,14 @@\n <?php\n \n namespace App\\Controller;\n \n+use App\\Entity\\User;\n+use App\\Form\\RegisterType;\n use Doctrine\\ORM\\EntityManagerInterface;\n-use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n+use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n \n class RegisterController extends AbstractController\n {\n     private $entityManager;\n"
+                },
+                {
+                    "date": 1694457893647,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n use Doctrine\\ORM\\EntityManagerInterface;\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n+use Symfony\\Component\\DependencyInjection\\Loader\\Configurator\\request;\n \n class RegisterController extends AbstractController\n {\n     private $entityManager;\n"
+                },
+                {
+                    "date": 1694457899265,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,10 @@\n use Doctrine\\ORM\\EntityManagerInterface;\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n-use Symfony\\Component\\DependencyInjection\\Loader\\Configurator\\request;\n \n+\n class RegisterController extends AbstractController\n {\n     private $entityManager;\n \n"
+                },
+                {
+                    "date": 1694457907122,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n class RegisterController extends AbstractController\n {\n     private $entityManager;\n \n-    public function __construct(EntityManagerInterface $entityManager)\n+    public function __construct(EntityManagerInterface $entityManager,)\n     {\n         $this->entityManager = $entityManager;\n     }\n \n"
+                },
+                {
+                    "date": 1694457926312,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n class RegisterController extends AbstractController\n {\n     private $entityManager;\n \n-    public function __construct(EntityManagerInterface $entityManager,)\n+    public function __construct(EntityManagerInterface $entityManager,Request $request)\n     {\n         $this->entityManager = $entityManager;\n     }\n \n"
+                },
+                {
+                    "date": 1694457939853,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n \n use App\\Entity\\User;\n use App\\Form\\RegisterType;\n use Doctrine\\ORM\\EntityManagerInterface;\n+use Symfony\\Component\\HttpFoundation\\Request;\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n \n@@ -13,9 +14,9 @@\n class RegisterController extends AbstractController\n {\n     private $entityManager;\n \n-    public function __construct(EntityManagerInterface $entityManager,Request $request)\n+    public function __construct(EntityManagerInterface $entityManager,)\n     {\n         $this->entityManager = $entityManager;\n     }\n \n"
+                },
+                {
+                    "date": 1694457952330,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,15 +21,14 @@\n     }\n \n \n     #[Route('/inscription', name: 'register')]\n-    public function index(): Response\n+    public function index(Request $request): Response\n     {\n         $user = new User();\n         $form = $this->createForm(RegisterType::class, $user);\n \n         $form->handleRequest($request);\n-\n         return $this->render('register/index.html.twig', [\n             \n         ]);\n     }\n"
+                },
+                {
+                    "date": 1694458258462,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,13 +23,14 @@\n \n     #[Route('/inscription', name: 'register')]\n     public function index(Request $request): Response\n     {\n+\n         $user = new User();\n         $form = $this->createForm(RegisterType::class, $user);\n-\n         $form->handleRequest($request);\n         return $this->render('register/index.html.twig', [\n             \n+            \n         ]);\n     }\n }\n"
+                },
+                {
+                    "date": 1694458265501,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n         $user = new User();\n         $form = $this->createForm(RegisterType::class, $user);\n         $form->handleRequest($request);\n         return $this->render('register/index.html.twig', [\n-            \n-            \n+             'form'\n+\n         ]);\n     }\n }\n"
+                },
+                {
+                    "date": 1694458273929,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n         $user = new User();\n         $form = $this->createForm(RegisterType::class, $user);\n         $form->handleRequest($request);\n         return $this->render('register/index.html.twig', [\n-             'form'\n+            'formTask' => $form->createView(),\n \n         ]);\n     }\n }\n"
+                },
+                {
+                    "date": 1694458620046,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,13 +24,16 @@\n     #[Route('/inscription', name: 'register')]\n     public function index(Request $request): Response\n     {\n \n+\n+\n+        \n         $user = new User();\n         $form = $this->createForm(RegisterType::class, $user);\n         $form->handleRequest($request);\n         return $this->render('register/index.html.twig', [\n-            'formTask' => $form->createView(),\n+            'form' => $form->createView(),\n \n         ]);\n     }\n }\n"
+                },
+                {
+                    "date": 1694458637757,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,12 +26,14 @@\n     {\n \n \n \n-        \n+        $notification = null;\n         $user = new User();\n         $form = $this->createForm(RegisterType::class, $user);\n         $form->handleRequest($request);\n+\n+\n         return $this->render('register/index.html.twig', [\n             'form' => $form->createView(),\n \n         ]);\n"
+                },
+                {
+                    "date": 1694458665448,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,10 +30,26 @@\n         $notification = null;\n         $user = new User();\n         $form = $this->createForm(RegisterType::class, $user);\n         $form->handleRequest($request);\n+        \n+        if ($form->isSubmitted() && $form->isValid()) {\n \n+            $user = $form->getData();\n+            $user_find = $this->entityManager->getRepository(User::class)->findOneByEmail($user->getEmail());\n+            if (!$user_find) {\n \n+                $password = $encoder->hashPassword($user, $user->getPassword());\n+                $user->setPassword($password);\n+            }\n+            $this->entityManager->persist($user);\n+            $this->entityManager->flush();\n+\n+            $notification = 'your registration went well';\n+        } else {\n+            $notification = 'your email already exists';\n+        }\n+\n         return $this->render('register/index.html.twig', [\n             'form' => $form->createView(),\n \n         ]);\n"
+                },
+                {
+                    "date": 1694458683390,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n     }\n \n \n     #[Route('/inscription', name: 'register')]\n-    public function index(Request $request): Response\n+    public function index(Request $request,UserPasswordHasherInterface $encoder): Response\n     {\n \n \n \n"
+                },
+                {
+                    "date": 1694458704080,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n use Doctrine\\ORM\\EntityManagerInterface;\n use Symfony\\Component\\HttpFoundation\\Request;\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n+use Symfony\\Component\\PasswordHasher\\Hasher\\UserPasswordHasherInterface;\n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n \n \n class RegisterController extends AbstractController\n@@ -21,9 +22,9 @@\n     }\n \n \n     #[Route('/inscription', name: 'register')]\n-    public function index(Request $request,UserPasswordHasherInterface $encoder): Response\n+    public function index(Request $request, UserPasswordHasherInterface $encoder): Response\n     {\n \n \n \n"
+                },
+                {
+                    "date": 1694458721344,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,11 +24,8 @@\n \n     #[Route('/inscription', name: 'register')]\n     public function index(Request $request, UserPasswordHasherInterface $encoder): Response\n     {\n-\n-\n-\n         $notification = null;\n         $user = new User();\n         $form = $this->createForm(RegisterType::class, $user);\n         $form->handleRequest($request);\n"
+                },
+                {
+                    "date": 1694458733311,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,8 +48,8 @@\n         }\n \n         return $this->render('register/index.html.twig', [\n             'form' => $form->createView(),\n-\n+            'notification' => $notification\n         ]);\n     }\n }\n"
+                },
+                {
+                    "date": 1694458965654,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n use Doctrine\\ORM\\EntityManagerInterface;\n use Symfony\\Component\\HttpFoundation\\Request;\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n-use Symfony\\Component\\PasswordHasher\\Hasher\\UserPasswordHasherInterface;\n+Cannot resolve argument $encoder of \"App\\Controller\\RegisterController::index()\": Cannot determine controller argument for \"App\\Controller\\RegisterController::index()\": the $encoder argument is type-hinted with the non-existent class or interface: \"Symfony\\Component\\PasswordHasher\\Hasher\\UserPasswordHasherInterface\"\n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n \n \n class RegisterController extends AbstractController\n"
+                },
+                {
+                    "date": 1694458980662,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n use Doctrine\\ORM\\EntityManagerInterface;\n use Symfony\\Component\\HttpFoundation\\Request;\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n-Cannot resolve argument $encoder of \"App\\Controller\\RegisterController::index()\": Cannot determine controller argument for \"App\\Controller\\RegisterController::index()\": the $encoder argument is type-hinted with the non-existent class or interface: \"Symfony\\Component\\PasswordHasher\\Hasher\\UserPasswordHasherInterface\"\n+\n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n \n \n class RegisterController extends AbstractController\n@@ -22,9 +22,9 @@\n     }\n \n \n     #[Route('/inscription', name: 'register')]\n-    public function index(Request $request, UserPasswordHasherInterface $encoder): Response\n+    public function index(Request $request,UserPasswordHasherInterface $encoder): Response\n     {\n         $notification = null;\n         $user = new User();\n         $form = $this->createForm(RegisterType::class, $user);\n"
+                },
+                {
+                    "date": 1694459059969,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n \n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n+use Symfony\\Component\\PasswordHasher\\Hasher\\UserPasswordHasherInterface;\n \n \n class RegisterController extends AbstractController\n {\n"
+                },
+                {
+                    "date": 1694459270579,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n use Doctrine\\ORM\\EntityManagerInterface;\n use Symfony\\Component\\HttpFoundation\\Request;\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n-\n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n use Symfony\\Component\\PasswordHasher\\Hasher\\UserPasswordHasherInterface;\n \n \n@@ -35,9 +34,8 @@\n \n             $user = $form->getData();\n             $user_find = $this->entityManager->getRepository(User::class)->findOneByEmail($user->getEmail());\n             if (!$user_find) {\n-\n                 $password = $encoder->hashPassword($user, $user->getPassword());\n                 $user->setPassword($password);\n             }\n             $this->entityManager->persist($user);\n"
+                }
+            ],
+            "date": 1694457521547,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Controller;\n\nuse Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\nuse Symfony\\Component\\HttpFoundation\\Response;\nuse Symfony\\Component\\Routing\\Annotation\\Route;\n\nclass RegisterController extends AbstractController\n{\n    #[Route('/register', name: 'app_register')]\n    public function index(): Response\n    {\n        return $this->render('register/index.html.twig', [\n            \n        ]);\n    }\n}\n"
+        }
+    ]
+}

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+   <div class="container">
+       <h1>Ajouter une annonce</h1>
+
+       {{ form_start(formAnnonce, {'attr': {'class': 'my-form'}}) }}
+
+       <div class="form-group">
+           {{ form_row(formAnnonce.title, {'attr': {'class': 'form-control', 'placeholder': "Titre de l'annonce"}}) }}
+       </div>
+
+       <div class="form-group">
+           {{ form_row(formAnnonce.category, {'attr': {'class': 'form-control', 'placeholder': "Catégorie de l'annonce"}}) }}
+       </div>
+
+       <div class="form-group">
+           {{ form_row(formAnnonce.description, {'attr': {'class': 'form-control', 'placeholder': "Description de l'annonce"}}) }}
+       </div>
+
+       <button type="submit" class="btn btn-success">
+           {% if editMode %}
+               Enregistrer les modifications
+           {% else %}
+               Ajouter l'annonce
+           {% endif %}
+       </button>
+
+       {{ form_end(formAnnonce) }}
+   </div>
+
+   <style>
+       /* Styles spécifiques au formulaire */
+       .my-form {
+           max-width: 400px;
+           margin: 0 auto;
+           padding: 20px;
+           background-color: #f7f7f7;
+           border: 1px solid #ddd;
+           border-radius: 5px;
+       }
+
+       /* Styles spécifiques au bouton */
+       .btn-success {
+           background-color: #28a745;
+           color: #fff;
+           border: none;
+       }
+
+       .btn-success:hover {
+           background-color: #218838;
+       }
+   </style>
+
+{% endblock %}

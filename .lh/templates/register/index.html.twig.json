@@ -1,0 +1,66 @@
+{
+    "sourceFile": "templates/register/index.html.twig",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 12,
+            "patches": [
+                {
+                    "date": 1694457599356,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1694457605372,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,13 +2,8 @@\n \n {% block title %}Hello RegisterController!{% endblock %}\n \n {% block body %}\n-<style>\n-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }\n-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }\n-</style>\n-\n <div class=\"example-wrapper\">\n     <h1>Hello {{ controller_name }}! ✅</h1>\n \n </div>\n"
+                },
+                {
+                    "date": 1694457691145,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,8 @@\n {% block title %}Hello RegisterController!{% endblock %}\n \n {% block body %}\n <div class=\"example-wrapper\">\n-    <h1>Hello {{ controller_name }}! ✅</h1>\n+    <h1>Hello {{  }}! ✅</h1>\n \n </div>\n {% endblock %}\n"
+                },
+                {
+                    "date": 1694457700760,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,8 @@\n {% block title %}Hello RegisterController!{% endblock %}\n \n {% block body %}\n <div class=\"example-wrapper\">\n-    <h1>Hello {{  }}! ✅</h1>\n+    <h1>Hello  ✅</h1>\n \n </div>\n {% endblock %}\n"
+                },
+                {
+                    "date": 1694458158019,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,41 @@\n {% extends 'base.html.twig' %}\n \n-{% block title %}Hello RegisterController!{% endblock %}\n+{% block title %}Inscription{% endblock %}\n \n {% block body %}\n-<div class=\"example-wrapper\">\n-    <h1>Hello  ✅</h1>\n \n-</div>\n+    <section class=\"form\">\n+        <div class=\"container\">\n+\n+{% if notification %}\n+       \n+   <div class =\"alert alert-sucess\" style=\"background-color:black\">\n+       {{  notification  }}\n+   </div>\n+{% endif %}\n+            <div class=\"row\">\n+                <div class=\"col\"></div>\n+                <div class=\"col-6\">\n+                    {{ form_start(form) }}\n+\n+                    <div class=\"mb-3\">\n+                    {{ form_label(form.nom, 'Nom', {'label_attr': {'class': 'form-label'}})}}\n+                    {{ form_row(form.nom , {'attr' : {'class' : 'form-control'}})}}\n+                    </div>\n+\n+                    {{ form_label(form.prenom, 'Prenom', {'label_attr': {'class': 'form-label'}}) }}\n+                    {{ form_row(form.prenom  , {'attr' : {'class' : 'form-control'}}) }}\n+\n+                    {{ form_label(form.email , 'Email', {'label_attr': {'class': 'form-label'}}) }}\n+                    {{ form_row(form.email , {'attr' : {'class' : 'form-control'}}) }}\n+\n+\n+                    {{ form_row(form.password) }}\n+\n+                    {{ form_end(form) }}\n+                </div>\n+                <div class=\"col\"></div>\n+            </div>\n+        </div>\n+    </section>\n {% endblock %}\n"
+                },
+                {
+                    "date": 1694458166502,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,14 +6,14 @@\n \n     <section class=\"form\">\n         <div class=\"container\">\n \n-{% if notification %}\n+{# {% if notification %}\n        \n    <div class =\"alert alert-sucess\" style=\"background-color:black\">\n-       {{  notification  }}\n+       {# {{  notification  }} #}\n    </div>\n-{% endif %}\n+{% endif %} #}\n             <div class=\"row\">\n                 <div class=\"col\"></div>\n                 <div class=\"col-6\">\n                     {{ form_start(form) }}\n"
+                },
+                {
+                    "date": 1694458234586,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,16 +11,16 @@\n        \n    <div class =\"alert alert-sucess\" style=\"background-color:black\">\n        {# {{  notification  }} #}\n    </div>\n-{% endif %} #}\n+{# {% endif %}  #}\n             <div class=\"row\">\n                 <div class=\"col\"></div>\n                 <div class=\"col-6\">\n                     {{ form_start(form) }}\n \n                     <div class=\"mb-3\">\n-                    {{ form_label(form.nom, 'Nom', {'label_attr': {'class': 'form-label'}})}}\n+                    {{ form_label(form.nom, 'Name', {'label_attr': {'class': 'form-label'}})}}\n                     {{ form_row(form.nom , {'attr' : {'class' : 'form-control'}})}}\n                     </div>\n \n                     {{ form_label(form.prenom, 'Prenom', {'label_attr': {'class': 'form-label'}}) }}\n"
+                },
+                {
+                    "date": 1694458325172,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,13 +18,13 @@\n                 <div class=\"col-6\">\n                     {{ form_start(form) }}\n \n                     <div class=\"mb-3\">\n-                    {{ form_label(form.nom, 'Name', {'label_attr': {'class': 'form-label'}})}}\n+                    {{ form_label(form.name, 'Name', {'label_attr': {'class': 'form-label'}})}}\n                     {{ form_row(form.nom , {'attr' : {'class' : 'form-control'}})}}\n                     </div>\n \n-                    {{ form_label(form.prenom, 'Prenom', {'label_attr': {'class': 'form-label'}}) }}\n+                    {{ form_label(form.prenom, 'Username', {'label_attr': {'class': 'form-label'}}) }}\n                     {{ form_row(form.prenom  , {'attr' : {'class' : 'form-control'}}) }}\n \n                     {{ form_label(form.email , 'Email', {'label_attr': {'class': 'form-label'}}) }}\n                     {{ form_row(form.email , {'attr' : {'class' : 'form-control'}}) }}\n"
+                },
+                {
+                    "date": 1694458333228,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,12 +19,12 @@\n                     {{ form_start(form) }}\n \n                     <div class=\"mb-3\">\n                     {{ form_label(form.name, 'Name', {'label_attr': {'class': 'form-label'}})}}\n-                    {{ form_row(form.nom , {'attr' : {'class' : 'form-control'}})}}\n+                    {{ form_row(form.name , {'attr' : {'class' : 'form-control'}})}}\n                     </div>\n \n-                    {{ form_label(form.prenom, 'Username', {'label_attr': {'class': 'form-label'}}) }}\n+                    {{ form_label(form.user, 'Username', {'label_attr': {'class': 'form-label'}}) }}\n                     {{ form_row(form.prenom  , {'attr' : {'class' : 'form-control'}}) }}\n \n                     {{ form_label(form.email , 'Email', {'label_attr': {'class': 'form-label'}}) }}\n                     {{ form_row(form.email , {'attr' : {'class' : 'form-control'}}) }}\n"
+                },
+                {
+                    "date": 1694458354868,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,10 +22,10 @@\n                     {{ form_label(form.name, 'Name', {'label_attr': {'class': 'form-label'}})}}\n                     {{ form_row(form.name , {'attr' : {'class' : 'form-control'}})}}\n                     </div>\n \n-                    {{ form_label(form.user, 'Username', {'label_attr': {'class': 'form-label'}}) }}\n-                    {{ form_row(form.prenom  , {'attr' : {'class' : 'form-control'}}) }}\n+                    {{ form_label(form.username, 'Username', {'label_attr': {'class': 'form-label'}}) }}\n+                    {{ form_row(form.username  , {'attr' : {'class' : 'form-control'}}) }}\n \n                     {{ form_label(form.email , 'Email', {'label_attr': {'class': 'form-label'}}) }}\n                     {{ form_row(form.email , {'attr' : {'class' : 'form-control'}}) }}\n \n"
+                },
+                {
+                    "date": 1694458909304,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n     <section class=\"form\">\n         <div class=\"container\">\n \n-{# {% if notification %}\n+{# {# {% if notification %} #}\n        \n    <div class =\"alert alert-sucess\" style=\"background-color:black\">\n        {# {{  notification  }} #}\n    </div>\n"
+                },
+                {
+                    "date": 1694458915597,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n     <section class=\"form\">\n         <div class=\"container\">\n \n-{# {# {% if notification %} #}\n+{ {% if notification %} \n        \n    <div class =\"alert alert-sucess\" style=\"background-color:black\">\n        {# {{  notification  }} #}\n    </div>\n"
+                },
+                {
+                    "date": 1694458921365,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,14 +6,14 @@\n \n     <section class=\"form\">\n         <div class=\"container\">\n \n-{ {% if notification %} \n+ {% if notification %} \n        \n    <div class =\"alert alert-sucess\" style=\"background-color:black\">\n        {# {{  notification  }} #}\n    </div>\n-{# {% endif %}  #}\n+ {% endif %} \n             <div class=\"row\">\n                 <div class=\"col\"></div>\n                 <div class=\"col-6\">\n                     {{ form_start(form) }}\n"
+                }
+            ],
+            "date": 1694457599356,
+            "name": "Commit-0",
+            "content": "{% extends 'base.html.twig' %}\n\n{% block title %}Hello RegisterController!{% endblock %}\n\n{% block body %}\n<style>\n    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }\n    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }\n</style>\n\n<div class=\"example-wrapper\">\n    <h1>Hello {{ controller_name }}! ✅</h1>\n\n</div>\n{% endblock %}\n"
+        }
+    ]
+}

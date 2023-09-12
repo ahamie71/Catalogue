@@ -1,0 +1,32 @@
+{% extends 'base.html.twig'%}
+
+{% block body %}
+
+   <h1> Ajouter une annonce</h1>
+
+    {{form_start(formAnnonce) }}
+
+    {{form_row(formAnnonce.title, {'attr':{'placeholder':"Titre de la tâche"}})}}
+
+     {{form_row(formTask.category, {'attr':{'placeholder':"Categorie de la tâche"}})}}
+
+     {{form_row(formTask.description, {'attr':{'placeholder':"Description  de la tâche"}})}}
+
+     
+     
+     <button type="submit" class="btn btn-success">
+  {% if editMode %}
+  Enregistrer les modifications
+  {% else %}
+  Ajouter la tâche
+  {% endif %}
+</button>
+
+{{form_end(formTask)}}
+
+
+
+
+
+
+{% endblock %}

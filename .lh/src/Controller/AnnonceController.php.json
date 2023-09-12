@@ -1,0 +1,230 @@
+{
+    "sourceFile": "src/Controller/AnnonceController.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 53,
+            "patches": [
+                {
+                    "date": 1694452535036,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1694452543086,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,13 @@\n             'path' => 'src/Controller/AnnonceController.php',\n         ]);\n     }\n \n+    #[Route('/', name: 'home')]\n+    public function home()\n+    {\n+        return $this->render('task/home.html.twig');\n+    \n+    }\n \n \n-\n-    \n }\n"
+                },
+                {
+                    "date": 1694452809913,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n \n     #[Route('/', name: 'home')]\n     public function home()\n     {\n-        return $this->render('task/home.html.twig');\n+        return $this->render('Annonce/home.html.twig');\n     \n     }\n \n \n"
+                },
+                {
+                    "date": 1694452824028,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,6 +23,7 @@\n         return $this->render('Annonce/home.html.twig');\n     \n     }\n \n+    \n \n }\n"
+                },
+                {
+                    "date": 1694461417170,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n use Symfony\\Component\\Routing\\Annotation\\Route;\n \n class AnnonceController extends AbstractController\n {\n-    #[Route('/annonce', name: 'app_annonce')]\n+    #[Route('/annonce', name: 'annonce')]\n     public function index(): JsonResponse\n     {\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n@@ -23,7 +23,7 @@\n         return $this->render('Annonce/home.html.twig');\n     \n     }\n \n-    \n \n+\n }\n"
+                },
+                {
+                    "date": 1694461911591,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,14 +7,14 @@\n use Symfony\\Component\\Routing\\Annotation\\Route;\n \n class AnnonceController extends AbstractController\n {\n-    #[Route('/annonce', name: 'annonce')]\n+    #[Route('/annonce', name: 'Annonce')]\n     public function index(): JsonResponse\n     {\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n-            'path' => 'src/Controller/AnnonceController.php',\n+            ,\n         ]);\n     }\n \n     #[Route('/', name: 'home')]\n"
+                },
+                {
+                    "date": 1694461965440,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,11 +10,11 @@\n {\n     #[Route('/annonce', name: 'Annonce')]\n     public function index(): JsonResponse\n     {\n-        return $this->json([\n+        return([\n             'message' => 'Welcome to your new controller!',\n-            ,\n+            \n         ]);\n     }\n \n     #[Route('/', name: 'home')]\n"
+                },
+                {
+                    "date": 1694461972861,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,12 +10,9 @@\n {\n     #[Route('/annonce', name: 'Annonce')]\n     public function index(): JsonResponse\n     {\n-        return([\n-            'message' => 'Welcome to your new controller!',\n-            \n-        ]);\n+      \n     }\n \n     #[Route('/', name: 'home')]\n     public function home()\n"
+                },
+                {
+                    "date": 1694461981143,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \n class AnnonceController extends AbstractController\n {\n     #[Route('/annonce', name: 'Annonce')]\n-    public function index(): JsonResponse\n+    public function index(): \n     {\n       \n     }\n \n"
+                },
+                {
+                    "date": 1694463436320,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,11 +8,14 @@\n \n class AnnonceController extends AbstractController\n {\n     #[Route('/annonce', name: 'Annonce')]\n-    public function index(): \n+    public function index(): JsonResponse\n     {\n-      \n+        return $this->json([\n+            'message' => 'Welcome to your new controller!',\n+            'path' => 'src/Controller/AnnonceController.php',\n+        ]);\n     }\n \n     #[Route('/', name: 'home')]\n     public function home()\n"
+                },
+                {
+                    "date": 1694465575935,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,11 +10,9 @@\n {\n     #[Route('/annonce', name: 'Annonce')]\n     public function index(): JsonResponse\n     {\n-        return $this->json([\n-            'message' => 'Welcome to your new controller!',\n-            'path' => 'src/Controller/AnnonceController.php',\n+        return $this->j\n         ]);\n     }\n \n     #[Route('/', name: 'home')]\n"
+                },
+                {
+                    "date": 1694465584509,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,9 @@\n {\n     #[Route('/annonce', name: 'Annonce')]\n     public function index(): JsonResponse\n     {\n-        return $this->j\n-        ]);\n+        return $this->render('Annonce/home.html.twig');\n     }\n \n     #[Route('/', name: 'home')]\n     public function home()\n"
+                },
+                {
+                    "date": 1694465590056,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n {\n     #[Route('/annonce', name: 'Annonce')]\n     public function index(): JsonResponse\n     {\n-        return $this->render('Annonce/home.html.twig');\n+        return $this->render('Annonce/index.html.twig');\n     }\n \n     #[Route('/', name: 'home')]\n     public function home()\n"
+                },
+                {
+                    "date": 1694465955085,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \n class AnnonceController extends AbstractController\n {\n     #[Route('/annonce', name: 'Annonce')]\n-    public function index(): JsonResponse\n+    public function index():\n     {\n         return $this->render('Annonce/index.html.twig');\n     }\n \n"
+                },
+                {
+                    "date": 1694465963762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,15 +2,15 @@\n \n namespace App\\Controller;\n \n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n-use Symfony\\Component\\HttpFoundation\\JsonResponse;\n+use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n \n class AnnonceController extends AbstractController\n {\n     #[Route('/annonce', name: 'Annonce')]\n-    public function index():\n+    public function index():Response\n     {\n         return $this->render('Annonce/index.html.twig');\n     }\n \n"
+                },
+                {
+                    "date": 1694470173681,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,10 @@\n {\n     #[Route('/annonce', name: 'Annonce')]\n     public function index():Response\n     {\n+\n+        \n         return $this->render('Annonce/index.html.twig');\n     }\n \n     #[Route('/', name: 'home')]\n"
+                },
+                {
+                    "date": 1694470179763,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,10 @@\n {\n     #[Route('/annonce', name: 'Annonce')]\n     public function index():Response\n     {\n+        $ \n \n-        \n         return $this->render('Annonce/index.html.twig');\n     }\n \n     #[Route('/', name: 'home')]\n"
+                },
+                {
+                    "date": 1694470185527,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n {\n     #[Route('/annonce', name: 'Annonce')]\n     public function index():Response\n     {\n-        $ \n+        $annonce = new Annonce();\n \n         return $this->render('Annonce/index.html.twig');\n     }\n \n"
+                },
+                {
+                    "date": 1694470194355,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,18 +1,20 @@\n <?php\n \n namespace App\\Controller;\n \n-use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n+use App\\Entity\\Annonce;\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n+use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n \n class AnnonceController extends AbstractController\n {\n     #[Route('/annonce', name: 'Annonce')]\n     public function index():Response\n     {\n         $annonce = new Annonce();\n+        $annonce= \n \n         return $this->render('Annonce/index.html.twig');\n     }\n \n"
+                },
+                {
+                    "date": 1694470326432,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n     #[Route('/annonce', name: 'Annonce')]\n     public function index():Response\n     {\n         $annonce = new Annonce();\n-        $annonce= \n+        $annonce\n \n         return $this->render('Annonce/index.html.twig');\n     }\n \n"
+                },
+                {
+                    "date": 1694470333030,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n     #[Route('/annonce', name: 'Annonce')]\n     public function index():Response\n     {\n         $annonce = new Annonce();\n-        $annonce\n+        $annonce= $a\n \n         return $this->render('Annonce/index.html.twig');\n     }\n \n"
+                },
+                {
+                    "date": 1694470340730,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n     #[Route('/annonce', name: 'Annonce')]\n     public function index():Response\n     {\n         $annonce = new Annonce();\n-        $annonce= $a\n+        $annonce= $annonrepo\n \n         return $this->render('Annonce/index.html.twig');\n     }\n \n"
+                },
+                {
+                    "date": 1694470346741,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n     #[Route('/annonce', name: 'Annonce')]\n     public function index():Response\n     {\n         $annonce = new Annonce();\n-        $annonce= $annonrepo\n+        $annonce= $annonce-> findAll()\n \n         return $this->render('Annonce/index.html.twig');\n     }\n \n"
+                },
+                {
+                    "date": 1694470356372,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n     #[Route('/annonce', name: 'Annonce')]\n     public function index():Response\n     {\n         $annonce = new Annonce();\n-        $annonce= $annonce-> findAll()\n+        $annonce= $ann->findAll();\n \n         return $this->render('Annonce/index.html.twig');\n     }\n \n"
+                },
+                {
+                    "date": 1694470362761,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n     #[Route('/annonce', name: 'Annonce')]\n     public function index():Response\n     {\n         $annonce = new Annonce();\n-        $annonce= $ann->findAll();\n+        $annonce= $annonceRepo->findAll();\n \n         return $this->render('Annonce/index.html.twig');\n     }\n \n"
+                },
+                {
+                    "date": 1694470368157,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \n class AnnonceController extends AbstractController\n {\n     #[Route('/annonce', name: 'Annonce')]\n-    public function index():Response\n+    public function index( Ann):Response\n     {\n         $annonce = new Annonce();\n         $annonce= $annonceRepo->findAll();\n \n"
+                },
+                {
+                    "date": 1694470374134,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,16 +2,17 @@\n \n namespace App\\Controller;\n \n use App\\Entity\\Annonce;\n+use App\\Repository\\AnnonceRepository;\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n \n class AnnonceController extends AbstractController\n {\n     #[Route('/annonce', name: 'Annonce')]\n-    public function index( Ann):Response\n+    public function index( AnnonceRepository $ann):Response\n     {\n         $annonce = new Annonce();\n         $annonce= $annonceRepo->findAll();\n \n"
+                },
+                {
+                    "date": 1694470400892,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,12 +10,12 @@\n \n class AnnonceController extends AbstractController\n {\n     #[Route('/annonce', name: 'Annonce')]\n-    public function index( AnnonceRepository $ann):Response\n+    public function index( AnnonceRepository $annonceRepo):Response\n     {\n         $annonce = new Annonce();\n-        $annonce= $annonceRepo->findAll();\n+        $annonces= $annonceRepo->findAll();\n \n         return $this->render('Annonce/index.html.twig');\n     }\n \n"
+                },
+                {
+                    "date": 1694470415670,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n     #[Route('/annonce', name: 'Annonce')]\n     public function index( AnnonceRepository $annonceRepo):Response\n     {\n         $annonce = new Annonce();\n+        \n         $annonces= $annonceRepo->findAll();\n \n         return $this->render('Annonce/index.html.twig');\n     }\n"
+                },
+                {
+                    "date": 1694470432019,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,11 @@\n {\n     #[Route('/annonce', name: 'Annonce')]\n     public function index( AnnonceRepository $annonceRepo):Response\n     {\n+        \n         $annonce = new Annonce();\n-        \n+\n         $annonces= $annonceRepo->findAll();\n \n         return $this->render('Annonce/index.html.twig');\n     }\n"
+                },
+                {
+                    "date": 1694470437403,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n {\n     #[Route('/annonce', name: 'Annonce')]\n     public function index( AnnonceRepository $annonceRepo):Response\n     {\n-        \n+        $annonces\n         $annonce = new Annonce();\n \n         $annonces= $annonceRepo->findAll();\n \n"
+                },
+                {
+                    "date": 1694470447435,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,10 +11,10 @@\n class AnnonceController extends AbstractController\n {\n     #[Route('/annonce', name: 'Annonce')]\n     public function index( AnnonceRepository $annonceRepo):Response\n-    {\n-        $annonces\n+    {      $annonce = new Annonce();\n+        $annonces= [];\n         $annonce = new Annonce();\n \n         $annonces= $annonceRepo->findAll();\n \n"
+                },
+                {
+                    "date": 1694470453083,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,11 +11,11 @@\n class AnnonceController extends AbstractController\n {\n     #[Route('/annonce', name: 'Annonce')]\n     public function index( AnnonceRepository $annonceRepo):Response\n-    {      $annonce = new Annonce();\n+    {   $annonce = new Annonce();\n         $annonces= [];\n-        $annonce = new Annonce();\n+       \n \n         $annonces= $annonceRepo->findAll();\n \n         return $this->render('Annonce/index.html.twig');\n"
+                },
+                {
+                    "date": 1694470458449,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,12 +13,11 @@\n     #[Route('/annonce', name: 'Annonce')]\n     public function index( AnnonceRepository $annonceRepo):Response\n     {   $annonce = new Annonce();\n         $annonces= [];\n-       \n+    \n+        $annonce= $annonceRepo->findAll();\n \n-        $annonces= $annonceRepo->findAll();\n-\n         return $this->render('Annonce/index.html.twig');\n     }\n \n     #[Route('/', name: 'home')]\n"
+                },
+                {
+                    "date": 1694470465509,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,12 +11,12 @@\n class AnnonceController extends AbstractController\n {\n     #[Route('/annonce', name: 'Annonce')]\n     public function index( AnnonceRepository $annonceRepo):Response\n-    {   $annonce = new Annonce();\n+    {   $annonces = new Annonce();\n         $annonces= [];\n     \n-        $annonce= $annonceRepo->findAll();\n+        $annonces= $annonceRepo->findAll();\n \n         return $this->render('Annonce/index.html.twig');\n     }\n \n"
+                },
+                {
+                    "date": 1694470474005,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,10 +11,9 @@\n class AnnonceController extends AbstractController\n {\n     #[Route('/annonce', name: 'Annonce')]\n     public function index( AnnonceRepository $annonceRepo):Response\n-    {   $annonces = new Annonce();\n-        $annonces= [];\n+    {   \n     \n         $annonces= $annonceRepo->findAll();\n \n         return $this->render('Annonce/index.html.twig');\n"
+                },
+                {
+                    "date": 1694470484929,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n {\n     #[Route('/annonce', name: 'Annonce')]\n     public function index( AnnonceRepository $annonceRepo):Response\n     {   \n-    \n+         \n         $annonces= $annonceRepo->findAll();\n \n         return $this->render('Annonce/index.html.twig');\n     }\n"
+                },
+                {
+                    "date": 1694470494096,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n {\n     #[Route('/annonce', name: 'Annonce')]\n     public function index( AnnonceRepository $annonceRepo):Response\n     {   \n-         \n+         $annonce= \n         $annonces= $annonceRepo->findAll();\n \n         return $this->render('Annonce/index.html.twig');\n     }\n"
+                },
+                {
+                    "date": 1694470502920,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n {\n     #[Route('/annonce', name: 'Annonce')]\n     public function index( AnnonceRepository $annonceRepo):Response\n     {   \n-         $annonce= \n+         $annonce= new Annonce();\n         $annonces= $annonceRepo->findAll();\n \n         return $this->render('Annonce/index.html.twig');\n     }\n"
+                },
+                {
+                    "date": 1694470594079,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,12 @@\n {\n     #[Route('/annonce', name: 'Annonce')]\n     public function index( AnnonceRepository $annonceRepo):Response\n     {   \n-         $annonce= new Annonce();\n+        $annonce= new Annonce();\n+\n         $annonces= $annonceRepo->findAll();\n+        var\n \n         return $this->render('Annonce/index.html.twig');\n     }\n \n"
+                },
+                {
+                    "date": 1694470599845,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     {   \n         $annonce= new Annonce();\n \n         $annonces= $annonceRepo->findAll();\n-        var\n+        dd($annonces;)\n \n         return $this->render('Annonce/index.html.twig');\n     }\n \n"
+                },
+                {
+                    "date": 1694470622451,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,14 +10,14 @@\n \n class AnnonceController extends AbstractController\n {\n     #[Route('/annonce', name: 'Annonce')]\n-    public function index( AnnonceRepository $annonceRepo):Response\n+    public function index( AnnonceRepository $annonceRepo)\n     {   \n         $annonce= new Annonce();\n \n         $annonces= $annonceRepo->findAll();\n-        dd($annonces;)\n+        dd($annonces);\n \n         return $this->render('Annonce/index.html.twig');\n     }\n \n"
+                },
+                {
+                    "date": 1694470849072,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     {   \n         $annonce= new Annonce();\n \n         $annonces= $annonceRepo->findAll();\n-        dd($annonces);\n+    \n \n         return $this->render('Annonce/index.html.twig');\n     }\n \n"
+                },
+                {
+                    "date": 1694470856068,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,13 +12,10 @@\n {\n     #[Route('/annonce', name: 'Annonce')]\n     public function index( AnnonceRepository $annonceRepo)\n     {   \n-        $annonce= new Annonce();\n-\n+        \n         $annonces= $annonceRepo->findAll();\n-    \n-\n         return $this->render('Annonce/index.html.twig');\n     }\n \n     #[Route('/', name: 'home')]\n"
+                },
+                {
+                    "date": 1694470864957,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n     {   \n         \n         $annonces= $annonceRepo->findAll();\n         return $this->render('Annonce/index.html.twig');\n+        'annonce'=>$annonces\n     }\n \n     #[Route('/', name: 'home')]\n     public function home()\n"
+                },
+                {
+                    "date": 1694470878872,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,11 @@\n     public function index( AnnonceRepository $annonceRepo)\n     {   \n         \n         $annonces= $annonceRepo->findAll();\n-        return $this->render('Annonce/index.html.twig');\n+        return $this->render('Annonce/index.html.twig')[\n+            \n+        ];\n         'annonce'=>$annonces\n     }\n \n     #[Route('/', name: 'home')]\n"
+                },
+                {
+                    "date": 1694470884513,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     {   \n         \n         $annonces= $annonceRepo->findAll();\n         return $this->render('Annonce/index.html.twig')[\n-            \n+            'annonce'=>$annonces\n         ];\n         'annonce'=>$annonces\n     }\n \n"
+                },
+                {
+                    "date": 1694470891990,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,11 +15,11 @@\n     {   \n         \n         $annonces= $annonceRepo->findAll();\n         return $this->render('Annonce/index.html.twig')[\n-            'annonce'=>$annonces\n-        ];\n-        'annonce'=>$annonces\n+            'annonces'=>$annonces\n+        ]);\n+        \n     }\n \n     #[Route('/', name: 'home')]\n     public function home()\n"
+                },
+                {
+                    "date": 1694470901920,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,10 +14,10 @@\n     public function index( AnnonceRepository $annonceRepo)\n     {   \n         \n         $annonces= $annonceRepo->findAll();\n-        return $this->render('Annonce/index.html.twig')[\n-            'annonces'=>$annonces\n+        return $this->render('Annonce/index.html.twig',[\n+            'annonces'=>$annonces,\n         ]);\n         \n     }\n \n"
+                },
+                {
+                    "date": 1694502002135,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,10 @@\n         ]);\n         \n     }\n \n+    \n+\n     #[Route('/', name: 'home')]\n     public function home()\n     {\n         return $this->render('Annonce/home.html.twig');\n"
+                },
+                {
+                    "date": 1694502010043,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,10 @@\n         ]);\n         \n     }\n \n+\n+\n     \n \n     #[Route('/', name: 'home')]\n     public function home()\n"
+                },
+                {
+                    "date": 1694502016377,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     }\n \n \n \n-    \n+    #[Route('/annonce/[', name: 'Annonce')]\n \n     #[Route('/', name: 'home')]\n     public function home()\n     {\n"
+                },
+                {
+                    "date": 1694502022683,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     }\n \n \n \n-    #[Route('/annonce/{', name: 'Annonce')]\n+    #[Route('/annonce/{i', name: 'Annonce')]\n \n     #[Route('/', name: 'home')]\n     public function home()\n     {\n"
+                },
+                {
+                    "date": 1694504561684,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n         $form = $this->createForm(AnnonceType::class, $annonce);\n         $form->handleRequest($request);\n \n         if ($form->isSubmitted() && $form->isValid()) {\n-            if (!$t->getId()) {\n+            if (!$->getId()) {\n \n                 $task->setDeadline($form->get('deadline')->getData());\n                 $task->setUser($this->getUser());\n                 $task->setIsDone(False);\n"
+                }
+            ],
+            "date": 1694452535036,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Controller;\n\nuse Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\nuse Symfony\\Component\\HttpFoundation\\JsonResponse;\nuse Symfony\\Component\\Routing\\Annotation\\Route;\n\nclass AnnonceController extends AbstractController\n{\n    #[Route('/annonce', name: 'app_annonce')]\n    public function index(): JsonResponse\n    {\n        return $this->json([\n            'message' => 'Welcome to your new controller!',\n            'path' => 'src/Controller/AnnonceController.php',\n        ]);\n    }\n\n\n\n\n    \n}\n"
+        }
+    ]
+}

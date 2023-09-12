@@ -1,0 +1,94 @@
+{
+    "sourceFile": "templates/base.html.twig",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 19,
+            "patches": [
+                {
+                    "date": 1694452725575,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1694452731952,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,9 @@\n <!DOCTYPE html>\n <html>\n     <head>\n         <meta charset=\"UTF-8\">\n-        <title>{% block title %}Welcome!{% endblock %}</title>\n-        \n+        <title>{% block title %}Welcome!{% endblock %}</title>   \n     </head>\n     <body>\n         {% block body %}{% endblock %}\n     </body>\n"
+                },
+                {
+                    "date": 1694452737260,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,7 +4,11 @@\n         <meta charset=\"UTF-8\">\n         <title>{% block title %}Welcome!{% endblock %}</title>   \n     </head>\n     <body>\n-        {% block body %}{% endblock %}\n+        {% block body %}\n+        \n+        \"\n+    \n+    {% endblock %}\n     </body>\n </html>\n"
+                },
+                {
+                    "date": 1694452926837,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n     </head>\n     <body>\n         {% block body %}\n         \n-        \"\n+        \n     \n     {% endblock %}\n     </body>\n </html>\n"
+                },
+                {
+                    "date": 1694452952059,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,89 @@\n <!DOCTYPE html>\n <html>\n-    <head>\n-        <meta charset=\"UTF-8\">\n-        <title>{% block title %}Welcome!{% endblock %}</title>   \n-    </head>\n-    <body>\n-        {% block body %}\n-        \n-        \n+<head>\n+    <meta charset=\"UTF-8\">\n+    <title>\n+        {% block title %}\n+            Welcome!\n+        {% endblock %}\n+    </title>\n+    <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><text y='1.2em' font-size='96'>⚫️</text></svg>\">\n+    {% block stylesheets %}\n+        <link rel=\"stylesheet\" href=\"https://bootswatch.com/5/flatly/bootstrap.min.css\">\n     \n+        <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css\">\n+\n     {% endblock %}\n-    </body>\n+    {% block javascripts %}{% endblock %}\n+</head>\n+<body>\n+    <nav class=\"navbar navbar-expand-lg bg-primary\" data-bs-theme=\"dark\">\n+        <div class=\"container-fluid\">\n+            <a class=\"navbar-brand\" href=\"{{ path('home') }}\">\n+                TaskPlanner\n+            </a>\n+            <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n+                <span class=\"navbar-toggler-icon\"></span>\n+            </button>\n+            <div class=\"collapse navbar-collapse justify-content-between\" id=\"navbarColor01\">\n+              \n+                {% if app.user %}\n+                    <ul class=\"navbar-nav\">\n+                        <li class=\"nav-item\">\n+                            <a class=\"nav-link\">\n+                                {{ app.user.nom }} {{ app.user.prenom }}\n+                            </a>\n+                        </li>\n+                            <li class=\"nav-item\">\n+                                <a class=\"nav-link\" href=\"{{path('task')}}\">\n+                                    Liste des tâches\n+                                </a>\n+                            </li>\n+                            \n+\n+                            {% if is_granted('ROLE_ADMIN') %}\n+               \n+                            <li class=\"nav-item\">\n+                                        <a class=\"nav-link\" href=\"{{ path('admin')}}\">\n+                                           Espace Admin\n+                                        </a>\n+                                    </li>\n+                               {% endif %}\n+                        <li class=\"nav-item\">\n+                            <a class=\"nav-link\" href=\"{{ path('app_logout')}}\">\n+                                Déconnexion\n+                            </a>\n+                        </li>\n+                    \n+                \n+                <li class=\"nav-item\">\n+                   <button> <a class=\"nav-link\" href=\"{{path('search')}}\" style=\"background-color:white;color:black\">Rechercher</a></button>\n+                </li>\n+                    </ul>\n+\n+                   \n+                {% else %}\n+                    <ul class=\"navbar-nav\">\n+                        <li class=\"nav-item\">\n+                            <a class=\"nav-link\" href=\"{{ path('register') }}\">\n+                                S'inscrire\n+                            </a>\n+                        </li>\n+                        <li class=\"nav-item\">\n+                            <a class=\"nav-link\" href=\"{{ path('app_login') }}\">\n+                                Se Connecter\n+                            </a>\n+                        </li>\n+                    </ul>\n+                {% endif %}\n+\n+              \n+            </div>\n+        </div>\n+    </nav>\n+\n+    <div class=\"container\">\n+        {% block body %}{% endblock %}\n+    </div>\n+</body>\n </html>\n"
+                },
+                {
+                    "date": 1694452960692,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,9 +69,9 @@\n                                 S'inscrire\n                             </a>\n                         </li>\n                         <li class=\"nav-item\">\n-                            <a class=\"nav-link\" href=\"{{ path('app_login') }}\">\n+                            <a class=\"nav-link\" href=\"\">\n                                 Se Connecter\n                             </a>\n                         </li>\n                     </ul>\n"
+                },
+                {
+                    "date": 1694452969701,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,17 +56,17 @@\n                         </li>\n                     \n                 \n                 <li class=\"nav-item\">\n-                   <button> <a class=\"nav-link\" href=\"{{path('search')}}\" style=\"background-color:white;color:black\">Rechercher</a></button>\n+                   <button> <a class=\"nav-link\" href=\"\" style=\"background-color:white;color:black\">Rechercher</a></button>\n                 </li>\n                     </ul>\n \n                    \n                 {% else %}\n                     <ul class=\"navbar-nav\">\n                         <li class=\"nav-item\">\n-                            <a class=\"nav-link\" href=\"{{ path('register') }}\">\n+                            <a class=\"nav-link\" href=\"\">\n                                 S'inscrire\n                             </a>\n                         </li>\n                         <li class=\"nav-item\">\n"
+                },
+                {
+                    "date": 1694452975593,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,11 +55,9 @@\n                             </a>\n                         </li>\n                     \n                 \n-                <li class=\"nav-item\">\n-                   <button> <a class=\"nav-link\" href=\"\" style=\"background-color:white;color:black\">Rechercher</a></button>\n-                </li>\n+              \n                     </ul>\n \n                    \n                 {% else %}\n"
+                },
+                {
+                    "date": 1694452982124,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,9 +49,9 @@\n                                         </a>\n                                     </li>\n                                {% endif %}\n                         <li class=\"nav-item\">\n-                            <a class=\"nav-link\" href=\"{{ path('app_logout')}}\">\n+                            <a class=\"nav-link\" href=\"\">\n                                 Déconnexion\n                             </a>\n                         </li>\n                     \n"
+                },
+                {
+                    "date": 1694452987625,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n \n                             {% if is_granted('ROLE_ADMIN') %}\n                \n                             <li class=\"nav-item\">\n-                                        <a class=\"nav-link\" href=\"{{ path('admin')}}\">\n+                                        <a class=\"nav-link\" href=\"\">\n                                            Espace Admin\n                                         </a>\n                                     </li>\n                                {% endif %}\n"
+                },
+                {
+                    "date": 1694452998196,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n                 {% if app.user %}\n                     <ul class=\"navbar-nav\">\n                         <li class=\"nav-item\">\n                             <a class=\"nav-link\">\n-                                {{ app.user.nom }} {{ app.user.prenom }}\n+                                {# {{ app.user.nom }} {{ app.user.prenom }} #}\n                             </a>\n                         </li>\n                             <li class=\"nav-item\">\n                                 <a class=\"nav-link\" href=\"{{path('task')}}\">\n@@ -40,9 +40,9 @@\n                                 </a>\n                             </li>\n                             \n \n-                            {% if is_granted('ROLE_ADMIN') %}\n+                            {# {% if is_granted('ROLE_ADMIN') %} #}\n                \n                             <li class=\"nav-item\">\n                                         <a class=\"nav-link\" href=\"\">\n                                            Espace Admin\n"
+                },
+                {
+                    "date": 1694453008009,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,10 +34,10 @@\n                                 {# {{ app.user.nom }} {{ app.user.prenom }} #}\n                             </a>\n                         </li>\n                             <li class=\"nav-item\">\n-                                <a class=\"nav-link\" href=\"{{path('task')}}\">\n-                                    Liste des tâches\n+                                <a class=\"nav-link\" href=\"\">\n+                                    Liste des Anno\n                                 </a>\n                             </li>\n                             \n \n"
+                },
+                {
+                    "date": 1694453014742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,18 +26,18 @@\n                 <span class=\"navbar-toggler-icon\"></span>\n             </button>\n             <div class=\"collapse navbar-collapse justify-content-between\" id=\"navbarColor01\">\n               \n-                {% if app.user %}\n+                {# {% if app.user %} #}\n                     <ul class=\"navbar-nav\">\n                         <li class=\"nav-item\">\n                             <a class=\"nav-link\">\n                                 {# {{ app.user.nom }} {{ app.user.prenom }} #}\n                             </a>\n                         </li>\n                             <li class=\"nav-item\">\n                                 <a class=\"nav-link\" href=\"\">\n-                                    Liste des Anno\n+                                    Liste des Annonces\n                                 </a>\n                             </li>\n                             \n \n"
+                },
+                {
+                    "date": 1694453021909,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n <body>\n     <nav class=\"navbar navbar-expand-lg bg-primary\" data-bs-theme=\"dark\">\n         <div class=\"container-fluid\">\n             <a class=\"navbar-brand\" href=\"{{ path('home') }}\">\n-                TaskPlanner\n+                \n             </a>\n             <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n                 <span class=\"navbar-toggler-icon\"></span>\n             </button>\n"
+                },
+                {
+                    "date": 1694453033976,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n <body>\n     <nav class=\"navbar navbar-expand-lg bg-primary\" data-bs-theme=\"dark\">\n         <div class=\"container-fluid\">\n             <a class=\"navbar-brand\" href=\"{{ path('home') }}\">\n-                \n+                Catalogue RED CAT\n             </a>\n             <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n                 <span class=\"navbar-toggler-icon\"></span>\n             </button>\n"
+                },
+                {
+                    "date": 1694453039735,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n <body>\n     <nav class=\"navbar navbar-expand-lg bg-primary\" data-bs-theme=\"dark\">\n         <div class=\"container-fluid\">\n             <a class=\"navbar-brand\" href=\"{{ path('home') }}\">\n-                Catalogue RED CAT\n+                Catalogue RDS\n             </a>\n             <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n                 <span class=\"navbar-toggler-icon\"></span>\n             </button>\n"
+                },
+                {
+                    "date": 1694453047931,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,9 @@\n                                 Se Connecter\n                             </a>\n                         </li>\n                     </ul>\n-                {% endif %}\n+                {# {% endif %} #}\n \n               \n             </div>\n         </div>\n"
+                },
+                {
+                    "date": 1694457631248,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n                                         <a class=\"nav-link\" href=\"\">\n                                            Espace Admin\n                                         </a>\n                                     </li>\n-                               {% endif %}\n+                               {# {% endif %} #}\n                         <li class=\"nav-item\">\n                             <a class=\"nav-link\" href=\"\">\n                                 Déconnexion\n                             </a>\n@@ -59,12 +59,12 @@\n               \n                     </ul>\n \n                    \n-                {% else %}\n+                {# {% else %} #}\n                     <ul class=\"navbar-nav\">\n                         <li class=\"nav-item\">\n-                            <a class=\"nav-link\" href=\"\">\n+                            <a class=\"nav-link\" href=\"p\">\n                                 S'inscrire\n                             </a>\n                         </li>\n                         <li class=\"nav-item\">\n"
+                },
+                {
+                    "date": 1694457637531,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,9 +62,9 @@\n                    \n                 {# {% else %} #}\n                     <ul class=\"navbar-nav\">\n                         <li class=\"nav-item\">\n-                            <a class=\"nav-link\" href=\"p\">\n+                            <a class=\"nav-link\" href=\"{{path\"\">\n                                 S'inscrire\n                             </a>\n                         </li>\n                         <li class=\"nav-item\">\n"
+                },
+                {
+                    "date": 1694457658554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,9 +62,9 @@\n                    \n                 {# {% else %} #}\n                     <ul class=\"navbar-nav\">\n                         <li class=\"nav-item\">\n-                            <a class=\"nav-link\" href=\">\n+                            <a class=\"nav-link\" href=\"\">\n                                 S'inscrire\n                             </a>\n                         </li>\n                         <li class=\"nav-item\">\n"
+                }
+            ],
+            "date": 1694452725575,
+            "name": "Commit-0",
+            "content": "<!DOCTYPE html>\n<html>\n    <head>\n        <meta charset=\"UTF-8\">\n        <title>{% block title %}Welcome!{% endblock %}</title>\n        \n    </head>\n    <body>\n        {% block body %}{% endblock %}\n    </body>\n</html>\n"
+        }
+    ]
+}

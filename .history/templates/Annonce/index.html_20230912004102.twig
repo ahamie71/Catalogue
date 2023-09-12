@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+  Task List
+{% endblock %}
+{% block body %}
+
+    <h1>Détails de l'Annonce</h1>
+    <div>
+
+        {% for annonce in annonces %}
+        <h2>{{ annonce.title }}</h2>
+        <p><strong>Description :</strong> {{ annonce.description }}</p>
+        <p><strong>Catégorie :</strong> {{ annonce.category.name }}</p>
+        <!-- Ajoutez d'autres champs d'annonce ici si nécessaire -->
+
+        <!-- Affichage de l'image (suppose que l'image est stockée en tant que chemin vers un fichier) -->
+        {% if annonce.image %}
+            <img src="{{ asset(annonce.image) }}"  style="alt="Image de l'annonce">
+        {% else %}
+            <p>Aucune image disponible pour cette annonce.</p>
+        {% endif %}
+    </div>
+    
+ {% endfor %}
+   
+
+    <a href="{{ path('Annonce') }}">Retour à la liste des annonces</a>
+{% endblock %}

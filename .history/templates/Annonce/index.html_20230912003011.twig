@@ -1,0 +1,174 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+  Task List
+{% endblock %}
+{% block body %}
+  <div class="button-container">
+    <a href="" class="custom-button"><i class="fa fa-plus"></i></a>
+  </div>
+  <div class="container">
+    
+    </div>
+    <div class="task-list">
+      <h1>listes des annonces</h1>
+      {% for annonce in annonces %}
+
+        <div class="task">
+          <div class="task-header">
+        
+         
+            <h2 class="task-title" >{{ annonce.title }}</h2>
+          </div>
+           <div class="task-meta">
+          <span class="task-category">Categorie:{{ annonce.category.name }}</span>
+            <span class="task-user">Postée par : <strong>{{ annonce.user.name }}</strong></span>
+          </div>
+        
+<div class="container2">
+<div class="task-description">{{ annonce.description }}</div>
+{# </div>
+          <div class="task-actions">
+            <a href="{{ path('showTask', { id: task.id }) }}" class="btn btn-primary btn-sm">Lire la suite</a>
+            {% if task.user == app.user %}
+              <a href="{{ path('edit', { id: task.id }) }}" class="btn btn-success btn-sm">Modifier ma tache</a>
+            
+        {% endif %} #}
+    {# <span style="margin-left:250px ;" class="task-deadline">A faire pour le : {{ task.deadline|date('d/m/Y') }}</span> #}
+          </div>
+        </div> 
+       {% endfor %} 
+    </div>
+  </div> 
+
+  <style>
+    .mark-completed {
+      background-color: #28a745;
+      color: #fff;
+    }
+    .mark-completed:hover,
+    .mark-completed:focus {
+      background-color: #218838;
+      color: #fff;
+    }
+    
+    body {
+      background-color: white !important;
+      font-family:Arial, Helvetica, sans-serif
+      
+    }
+    .container {
+      display: flex;
+    }
+    .title {
+      text-align: start;
+    }
+
+    .container2 {
+        background-color: whitesmoke;
+        border: 2px solid #ccc;
+        
+        padding: 10px;
+      }
+
+    h2{
+        text-align: center;
+        margin: 0%;
+    }
+    
+    .button-container {
+      margin-top: 300px;
+      padding-left: 50px;
+    }
+    .custom-button {
+      border: 1px solid #000;
+      border-radius: 5px;
+      padding: 5px 10px;
+    }
+    
+    .Category {
+      display: grid;
+      align-items: center;
+      margin-bottom: 80px;
+      padding-top: 90px;
+    }
+    .category-list {
+      flex: 1;
+      padding-top: 100px;
+      margin-left: 100px;
+    }
+    .Category a {
+      padding: 20px 10px;
+    }
+    a {
+      text-decoration: none;
+    }
+    
+    .category-item {
+      width: 90px;
+      height: 50px;
+      background-color: black;
+      color: whitesmoke;
+      text-align: center;
+    
+      line-height: 30px;
+      margin-bottom: 40px;
+      padding: 10px;
+    }
+    
+    .task-list {
+      flex: 2;
+      margin-top: 10px;
+    }
+    
+    .task {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .task-header {
+      margin-bottom: 10px;
+    }
+    
+    .task-title {
+      font-weight: bold;
+      font-size: 18px;
+      color: #333;
+    }
+    
+    .task-meta {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    
+    .task-category,
+    .task-deadline {
+      margin-right: 10px;
+      font-weight: bold;
+    }
+    
+    .task-user {
+      font-weight: bold;
+    }
+    
+    .task-description {
+      margin-bottom: 10px;
+    }
+    
+    .task-actions {
+      margin-top: 10px;
+    }
+    
+    .task-checkbox-input {
+      margin-right: 5px;
+    }
+    
+    .task-checkbox-label {
+      position: relative;
+      top: 3px;
+    }
+  </style>
+{% endblock %}
+
+
